@@ -1,39 +1,224 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>DAI Studio — Admin Dashboard</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{--bg:#080d18;--panel:#101827;--panel2:#151f31;--line:#27344a;--text:#f4f7fb;--muted:#a7b4c8;--blue:#5b8cff;--cyan:#4de0d0;--danger:#ff6b7a;--radius:18px}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#132748 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 15px;font-weight:700;color:white;background:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#202d42;border:1px solid var(--line)}.ghost{background:transparent;border:1px solid var(--line)}.danger{background:#572531}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.brand{font-size:25px;font-weight:900;letter-spacing:-.8px}.brand span{color:var(--cyan)}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:#111d30;border-radius:999px;padding:5px 10px;color:#c8d7ec;font-size:12px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:13px;color:#cbd6e6}.field input,.field textarea,.field select,input,textarea,select{width:100%;color:var(--text);background:#09111f;border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}.field input:focus,.field textarea:focus,input:focus,textarea:focus,select:focus{border-color:var(--blue)}textarea{min-height:120px;resize:vertical}.auth-shell{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch}.auth-intro{padding:8vw;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(38,80,154,.3),rgba(8,13,24,.1))}.auth-intro h1{font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-2px;margin:28px 0 18px}.gradient{background:linear-gradient(90deg,#74a5ff,#4de0d0);-webkit-background-clip:text;background-clip:text;color:transparent}.auth-card-wrap{display:flex;align-items:center;justify-content:center;padding:28px}.auth-card{width:min(470px,100%);background:rgba(16,24,39,.96);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);box-shadow:0 25px 90px #0005}.auth-card h2{margin:0 0 5px;font-size:27px}.oauth-list{display:grid;gap:9px;margin:20px 0}.oauth-btn{width:100%;background:#101a2a;border:1px solid #34435a;display:flex;align-items:center;justify-content:center;gap:10px}.oauth-btn:hover,.secondary:hover,.ghost:hover{filter:brightness(1.15)}.provider-icon{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:#243650;font-size:12px;font-weight:900}.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin:18px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.auth-switch{display:flex;gap:8px;margin:18px 0 4px}.auth-switch button{flex:1}.notice{padding:11px 13px;border-radius:10px;background:#142c34;border:1px solid #245d60;color:#b8fff1;margin:12px 0;font-size:13px}.error{background:#351a27;border-color:#713044;color:#ffc5cf}.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.sidebar{padding:22px 15px;border-right:1px solid var(--line);background:#0a111e;position:sticky;top:0;height:100vh;overflow:auto}.side-brand{padding:5px 10px 25px}.nav-label{color:#75869e;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:12px 10px 6px}.nav-btn{display:flex;width:100%;gap:10px;align-items:center;text-align:left;color:#b9c7da;background:transparent;padding:11px 12px;margin:2px 0;border:1px solid transparent}.nav-btn.active,.nav-btn:hover{background:#17253b;border-color:#2a3d5a;color:white}.main{min-width:0}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;gap:14px;background:#080d18dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}.topbar-right{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#263f66;font-weight:900}.content{padding:28px;max-width:1500px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:22px}.page-head h1{margin:0;font-size:30px;letter-spacing:-.8px}.page-head p{color:var(--muted);margin:5px 0}.grid{display:grid;gap:16px}.grid.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:linear-gradient(145deg,#121d2e,#0f1725);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}.card h3{margin:0 0 8px}.card p{color:var(--muted)}.card-icon{font-size:24px;margin-bottom:12px}.stat{font-size:29px;font-weight:850;margin:7px 0}.tool-card{cursor:pointer;transition:.15s}.tool-card:hover{transform:translateY(-2px);border-color:#5377b5}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.editor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.editor-grid textarea{height:300px;font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}.preview{width:100%;height:420px;background:white;border:1px solid var(--line);border-radius:12px}.list{display:grid;gap:10px}.list-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;background:#0b1422;border:1px solid var(--line);border-radius:12px}.list-row strong{display:block}.list-row small{color:var(--muted)}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #34445c;border-radius:12px}.footer-note{color:#71829b;font-size:12px;margin-top:20px}.status{font-size:12px;color:var(--cyan)}.mobile-menu{display:none}.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:20}.modal{width:min(500px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}.user-email{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:12px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:580px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:13px}th{color:#b9c7da;background:#0b1422}td{color:#e1e9f5}tr:last-child td{border-bottom:0}.admin-status{margin:12px 0}.metric-label{font-size:13px;color:var(--muted)}.metric-value{font-size:28px;font-weight:850;margin-top:7px}.tag-good{color:#8ef0d0}.tag-warn{color:#ffd27a}
-@media(max-width:900px){.auth-shell{grid-template-columns:1fr}.auth-intro{padding:35px 26px 10px}.auth-intro h1{font-size:42px;margin:18px 0 10px}.auth-intro .intro-points{display:none}.auth-card-wrap{padding:18px}.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:10;left:-270px;width:250px;transition:left .2s;box-shadow:20px 0 70px #0007}.sidebar.open{left:0}.mobile-menu{display:inline-block}.content{padding:20px 15px}.topbar{padding:0 15px}.grid.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-grid{grid-template-columns:1fr}.editor-grid textarea{height:180px}}@media(max-width:560px){.grid.cards,.grid.two{grid-template-columns:1fr}.page-head{display:block}.page-head .toolbar{margin-top:12px}.topbar .user-email{display:none}.auth-intro h1{font-size:36px}.auth-card{padding:22px}.topbar{height:62px}}
-
-.admin-shell{max-width:1240px;margin:0 auto;padding:24px}.login-wrap{max-width:520px;margin:7vh auto}.hidden{display:none!important}.notice{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel2);margin:12px 0}.notice.error{border-color:var(--danger);color:#ffd7dc}.field{margin:12px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}.field input,.field select,.field textarea,input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1321;color:var(--text);font:inherit}.grid{display:grid;gap:14px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}.metric-label,.muted,small{color:var(--muted)}.metric-value{font-size:clamp(24px,4vw,34px);font-weight:750;margin:10px 0}.page-head{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}.page-head h1{margin:0}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.toolbar input{max-width:290px}button{border:0;border-radius:10px;padding:11px 15px;background:var(--blue);color:white;font-weight:650;cursor:pointer}button.secondary{background:#202d43;border:1px solid var(--line)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{color:var(--muted)}.list-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.list-row small{display:block;margin-top:4px;overflow-wrap:anywhere}.pill{align-self:center;background:#20324c;border-radius:20px;padding:4px 9px;font-size:12px}.empty{color:var(--muted);padding:15px 0}.brand{font-weight:850;font-size:23px;letter-spacing:.4px}.brand span{color:var(--blue)}.footer-note{color:var(--muted);font-size:12px;line-height:1.5;margin-top:18px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}.status{color:var(--cyan);font-size:13px}@media(max-width:760px){.admin-shell{padding:14px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}}@media(max-width:440px){.cards{grid-template-columns:1fr}.metric-value{font-size:27px}}
+:root{--bg:#080d18;--panel:#101827;--panel2:#151f31;--line:#27344a;--text:#f4f7fb;--muted:#a7b4c8;--blue:#5b8cff;--cyan:#4de0d0;--danger:#ff6b7a;--warn:#ffd27a;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#132748 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:650;color:#fff;background:var(--blue)}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.secondary{background:#202d43;border:1px solid var(--line)}
+button.ghost{background:transparent;border:1px solid var(--line)}
+button.danger{background:#572531}
+button.sm{padding:6px 10px;font-size:12px;border-radius:8px}
+button:hover{filter:brightness(1.12)}
+.hidden{display:none!important}.muted,small{color:var(--muted)}.small{font-size:12px}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1321;color:var(--text);outline:none}
+input:focus,select:focus{border-color:var(--blue)}
+.field{margin:12px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.admin-shell{max-width:1240px;margin:0 auto;padding:24px}
+.login-wrap{max-width:520px;margin:7vh auto}
+.brand{font-weight:900;font-size:23px;letter-spacing:.4px}.brand span{color:var(--cyan)}
+.card{background:linear-gradient(145deg,#121d2e,#0f1725);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
+.card h2{margin:0 0 6px;font-size:18px}
+.grid{display:grid;gap:14px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.metric-label{font-size:13px;color:var(--muted)}.metric-value{font-size:clamp(24px,4vw,34px);font-weight:750;margin:8px 0}
+.page-head{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.page-head h1{margin:0}.page-head h2{margin:0}.page-head p{margin:4px 0}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.toolbar input,.toolbar select{max-width:230px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}
+.status{color:var(--cyan);font-size:13px}
+.notice{padding:12px 14px;border:1px solid #245d60;border-radius:12px;background:#142c34;color:#b8fff1;margin:12px 0;font-size:13px}
+.notice.error{border-color:#713044;background:#351a27;color:#ffd7dc}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+th{color:#b9c7da;background:#0b1422}tr:last-child td{border-bottom:0}
+.list-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.list-row:last-child{border-bottom:0}.list-row small{display:block;margin-top:4px;overflow-wrap:anywhere}
+.pill{align-self:center;background:#20324c;border-radius:20px;padding:4px 9px;font-size:12px;white-space:nowrap}
+.pill.good{background:#12372f;color:#8ef0d0}.pill.bad{background:#4a2230;color:#ffc5cf}.pill.warn{background:#4a3d1b;color:var(--warn)}
+.empty{color:var(--muted);padding:15px 0;text-align:center}
+.footer-note{color:#71829b;font-size:12px;line-height:1.5;margin-top:18px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.chart{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:20}
+.modal{width:min(480px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
+.toasts{position:fixed;bottom:18px;right:18px;left:18px;display:grid;gap:8px;justify-items:end;z-index:50;pointer-events:none}
+.toast{background:#142c34;border:1px solid #245d60;color:#b8fff1;padding:11px 14px;border-radius:12px;font-size:13px;max-width:360px;box-shadow:0 10px 40px #0007}
+.toast.error{background:#351a27;border-color:#713044;color:#ffc5cf}
+@media(max-width:760px){.admin-shell{padding:14px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.toolbar input,.toolbar select{max-width:none}.toast{max-width:none}.toasts{justify-items:stretch}}
+@media(max-width:440px){.cards{grid-template-columns:1fr}}
 </style></head><body>
-<div id="loginScreen" class="admin-shell"><div class="login-wrap card"><div class="brand">DAI <span>STUDIO</span></div><p class="muted">Secure administration portal</p><h1>Admin sign in</h1><p class="muted">Connect your Supabase project, then sign in using an existing administrator account.</p>
-<details open><summary>Supabase connection</summary><div class="field"><label for="sbUrl">Project URL</label><input id="sbUrl" placeholder="https://your-project.supabase.co" autocomplete="url"></div><div class="field"><label for="sbKey">Publishable key / anon key</label><input id="sbKey" placeholder="Your public Supabase key" autocomplete="off"></div><button id="saveConfig" class="secondary">Save connection</button></details>
-<div class="field"><label for="email">Administrator email</label><input id="email" type="email" placeholder="admin@example.com" autocomplete="email"></div><button id="sendCode">Send verification code</button>
-<div id="otpArea" class="hidden"><div class="field"><label for="otp">Email verification code</label><input id="otp" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" maxlength="6"></div><button id="verifyCode">Verify and enter dashboard</button></div><div id="notice" class="notice hidden" role="status"></div><p class="footer-note">Only an account whose Supabase app_metadata has role = admin can access this dashboard. A newly registered account will not automatically become an administrator.</p></div></div>
-<div id="dashboard" class="admin-shell hidden"><div class="topbar"><div><div class="brand">DAI <span>STUDIO</span></div><div class="muted">Administration console</div></div><div class="toolbar"><span id="signedIn" class="status"></span><button id="refresh" class="secondary">↻ Refresh</button><button id="signOut" class="secondary">Sign out</button></div></div>
-<div class="page-head"><div><h1>Admin Dashboard</h1><p class="muted">Manage DAI Studio operations, accounts, models, plans and activity.</p></div></div><div id="adminStatus" class="notice">Connecting to the secure admin backend…</div>
-<div class="grid cards"><div class="card"><div class="metric-label">Registered users</div><div class="metric-value" id="usersMetric">—</div><small>All platform accounts</small></div><div class="card"><div class="metric-label">AI requests</div><div class="metric-value" id="requestsMetric">—</div><small>Recorded backend usage</small></div><div class="card"><div class="metric-label">Estimated usage cost</div><div class="metric-value" id="costMetric">—</div><small>Based on usage records</small></div><div class="card"><div class="metric-label">Active subscriptions</div><div class="metric-value" id="subsMetric">—</div><small>Active subscription records</small></div><div class="card"><div class="metric-label">AI providers online</div><div class="metric-value" id="providersMetric">—</div><small>Configured provider status</small></div><div class="card"><div class="metric-label">Errors / alerts</div><div class="metric-value" id="errorsMetric">—</div><small>Failed usage records</small></div></div>
-<div class="card" style="margin-top:16px"><div class="page-head"><div><h2>Users & access</h2><p class="muted">Search registered accounts.</p></div><div class="toolbar"><input id="userQuery" placeholder="Search email or user ID"><button id="searchUsers">Search</button></div></div><div id="usersTable" class="table-wrap"><div class="empty">User records will appear after the backend is connected.</div></div></div>
-<div class="grid two" style="margin-top:16px"><div class="card"><h2>AI provider status</h2><p class="muted">View provider configuration status. This does not test provider API keys.</p><div id="modelsList"><div class="empty">No provider data loaded.</div></div><button id="refreshModels" class="secondary">Refresh providers</button></div><div class="card"><h2>Subscription plans</h2><div id="plansList"><div class="empty">No plans loaded.</div></div><h3>Create a plan</h3><div class="field"><label for="planName">Plan name</label><input id="planName" placeholder="e.g. Pro"></div><div class="grid two"><div class="field"><label for="planPrice">Monthly price (NGN)</label><input id="planPrice" type="number" min="0" placeholder="5000"></div><div class="field"><label for="planLimit">Monthly AI requests</label><input id="planLimit" type="number" min="0" step="1" placeholder="1000"></div></div><button id="savePlan">Save plan</button></div></div>
-<div class="card" style="margin-top:16px"><h2>Recent activity & audit logs</h2><div id="logsList"><div class="empty">No activity loaded.</div></div></div><p class="footer-note">Security: this page checks the signed-in account's admin claim, and the Edge Function must independently verify that claim. Never place the Supabase service-role key in this HTML file.</p></div>
+
+<div id="loginScreen" class="admin-shell"><div class="login-wrap card">
+<div class="brand">DAI <span>STUDIO</span></div><p class="muted">Secure administration portal</p>
+<h1>Admin sign in</h1><p class="muted">Connect your Supabase project, then sign in with an existing administrator account.</p>
+<details open><summary style="cursor:pointer">Supabase connection</summary>
+<div class="field"><label for="sbUrl">Project URL</label><input id="sbUrl" placeholder="https://your-project.supabase.co" autocomplete="url"></div>
+<div class="field"><label for="sbKey">Publishable key / anon key</label><input id="sbKey" placeholder="Your public Supabase key" autocomplete="off"></div>
+<button id="saveConfig" class="secondary">Save connection</button></details>
+<div class="field"><label for="email">Administrator email</label><input id="email" type="email" placeholder="admin@example.com" autocomplete="email"></div>
+<button id="sendCode">Send verification code</button>
+<div id="otpArea" class="hidden"><div class="field"><label for="otp">Email verification code</label><input id="otp" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" maxlength="6"></div><button id="verifyCode">Verify and enter dashboard</button></div>
+<div id="notice" class="notice hidden" role="status"></div>
+<p class="footer-note">Only an account whose Supabase app_metadata has role = admin can access this dashboard. A newly registered account never becomes an administrator automatically.</p>
+</div></div>
+
+<div id="dashboard" class="admin-shell hidden">
+<div class="topbar"><div><div class="brand">DAI <span>STUDIO</span></div><div class="muted">Administration console</div></div>
+<div class="toolbar"><span id="signedIn" class="status"></span><button id="refresh" class="secondary">↻ Refresh</button><button id="signOut" class="secondary">Sign out</button></div></div>
+<div class="page-head"><div><h1>Admin Dashboard</h1><p class="muted">Manage accounts, plans, providers and activity.</p></div></div>
+<div id="adminStatus" class="notice">Connecting to the secure admin backend…</div>
+
+<div class="grid cards">
+<div class="card"><div class="metric-label">Registered users</div><div class="metric-value" id="usersMetric">—</div><small>All platform accounts</small></div>
+<div class="card"><div class="metric-label">AI requests</div><div class="metric-value" id="requestsMetric">—</div><small>Recorded backend usage</small></div>
+<div class="card"><div class="metric-label">Estimated usage cost</div><div class="metric-value" id="costMetric">—</div><small>Based on usage records</small></div>
+<div class="card"><div class="metric-label">Active subscriptions</div><div class="metric-value" id="subsMetric">—</div><small>Active subscription records</small></div>
+<div class="card"><div class="metric-label">AI providers online</div><div class="metric-value" id="providersMetric">—</div><small>Configured provider status</small></div>
+<div class="card"><div class="metric-label">Errors / alerts</div><div class="metric-value" id="errorsMetric">—</div><small>Failed usage records</small></div>
+</div>
+
+<div class="card" style="margin-top:16px"><h2>Usage — last 14 days</h2><p class="muted small" style="margin:0 0 8px">Requests per day, with failed requests in red.</p>
+<div id="usageChart"><div class="empty">No usage data loaded.</div></div></div>
+
+<div class="card" style="margin-top:16px">
+<div class="page-head" style="margin-top:0"><div><h2>Users & access</h2><p class="muted">Search, suspend and manage roles.</p></div>
+<div class="toolbar"><input id="userQuery" placeholder="Search email or user ID"><select id="userFilter"><option value="all">All</option><option value="active">Active</option><option value="suspended">Suspended</option><option value="admin">Admins</option></select><button id="searchUsers">Search</button><button id="exportUsers" class="secondary">Export CSV</button></div></div>
+<div id="usersTable" class="table-wrap"><div class="empty">User records will appear after the backend is connected.</div></div></div>
+
+<div class="grid two" style="margin-top:16px">
+<div class="card"><h2>AI provider status</h2><p class="muted">Shows configured provider status. It does not test API keys.</p><div id="modelsList"><div class="empty">No provider data loaded.</div></div><button id="refreshModels" class="secondary" style="margin-top:10px">Refresh providers</button></div>
+<div class="card"><h2>Subscription plans</h2><div id="plansList"><div class="empty">No plans loaded.</div></div>
+<h3>Create a plan</h3>
+<div class="field"><label for="planName">Plan name</label><input id="planName" placeholder="e.g. Pro"></div>
+<div class="grid two"><div class="field"><label for="planPrice">Monthly price (NGN)</label><input id="planPrice" type="number" min="0" placeholder="5000"></div><div class="field"><label for="planLimit">Monthly AI requests</label><input id="planLimit" type="number" min="0" step="1" placeholder="1000"></div></div>
+<button id="savePlan">Save plan</button></div></div>
+
+<div class="card" style="margin-top:16px">
+<div class="page-head" style="margin-top:0"><div><h2>Recent activity & audit logs</h2></div><div class="toolbar"><input id="logQuery" placeholder="Filter activity…"></div></div>
+<div id="logsList"><div class="empty">No activity loaded.</div></div></div>
+<p class="footer-note">Security: this page checks the admin claim for convenience, but the Edge Function independently verifies it on every request. Never place the Supabase service-role key in this file.</p>
+</div>
+
+<div id="modalRoot"></div><div id="toasts" class="toasts"></div>
+
 <script>
-const $=id=>document.getElementById(id);let client=null,activeUser=null;
+const $=id=>document.getElementById(id);
+let client=null,activeUser=null,usersCache=[],plansCache=[],logsCache=[];
 function readConfig(){return {url:$('sbUrl').value.trim().replace(/\/$/,''),key:$('sbKey').value.trim()}}
-function notify(message,error=false){const el=$('notice');el.textContent=message;el.classList.remove('hidden','error');if(error)el.classList.add('error')}
-function status(message,error=false){const el=$('adminStatus');el.textContent=message;el.classList.remove('error');if(error)el.classList.add('error')}
+function notify(m,e=false){const el=$('notice');el.textContent=m;el.classList.remove('hidden','error');if(e)el.classList.add('error')}
+function status(m,e=false){const el=$('adminStatus');el.textContent=m;el.classList.remove('error');if(e)el.classList.add('error')}
+function toast(m,e=false){const t=document.createElement('div');t.className='toast'+(e?' error':'');t.textContent=m;$('toasts').appendChild(t);setTimeout(()=>t.remove(),e?5000:2800)}
 function esc(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function initClient(){const c=readConfig();if(!c.url||!c.key)throw Error('Enter your Supabase project URL and public key first.');if(!window.supabase?.createClient)throw Error('Supabase library did not load. Check your internet connection.');client=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});localStorage.setItem('daiStudioAdminConfig',JSON.stringify(c));return client}
+function initClient(){const c=readConfig();if(!c.url||!c.key)throw Error('Enter your Supabase project URL and public key first.');if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(c.url))throw Error('Enter a valid Supabase URL ending in .supabase.co.');if(!window.supabase?.createClient)throw Error('Supabase library did not load. Check your internet connection.');client=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});localStorage.setItem('daiStudioAdminConfig',JSON.stringify(c));return client}
 function isAdmin(u){return u?.app_metadata?.role==='admin'||(Array.isArray(u?.app_metadata?.roles)&&u.app_metadata.roles.includes('admin'))}
-async function api(action,body=null){const {data,error}=await client.auth.getSession();if(error)throw error;const token=data?.session?.access_token;if(!token)throw Error('Your sign-in session has expired. Sign in again.');const c=readConfig();const res=await fetch(`${c.url}/functions/v1/admin-dashboard?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});let d={};try{d=await res.json()}catch{}if(!res.ok)throw Error(d.error||`Admin backend returned HTTP ${res.status}.`);return d}
-function list(items,type){if(!items?.length)return `<div class="empty">No ${type} records returned.</div>`;return items.map(x=>{const title=x.name||x.provider||x.action||'Record';const details=x.model||x.description||(x.actor_email?`${x.actor_email} · ${x.created_at?new Date(x.created_at).toLocaleString():''}`:x.details?JSON.stringify(x.details):x.monthly_price_ngn!=null?`₦${Number(x.monthly_price_ngn).toLocaleString()} / month · ${x.monthly_requests} requests`: '');const st=x.status||(x.active===true?'Active':x.active===false?'Inactive':'Recorded');return `<div class="list-row"><div><strong>${esc(title)}</strong><small>${esc(details)}</small></div><span class="pill">${esc(st)}</span></div>`}).join('')}
-function renderUsers(users){if(!users?.length)return '<div class="empty">No matching users.</div>';return `<table><thead><tr><th>Email</th><th>User ID</th><th>Status</th><th>Joined</th></tr></thead><tbody>${users.map(u=>`<tr><td>${esc(u.email||'—')}</td><td>${esc(u.id||'—')}</td><td>${esc(u.status||'Unknown')}</td><td>${esc(u.created_at?new Date(u.created_at).toLocaleDateString():'—')}</td></tr>`).join('')}</tbody></table>`}
-async function load(action='overview',query=''){status('Loading secure admin data…');try{const d=await api(action,action==='users'?{query}:null);if(action==='overview'){const m=d.metrics||{};$('usersMetric').textContent=m.registeredUsers??'—';$('requestsMetric').textContent=m.aiRequests??'—';$('costMetric').textContent=m.estimatedCostNgn!=null?'₦'+Number(m.estimatedCostNgn).toLocaleString():'—';$('subsMetric').textContent=m.activeSubscriptions??'—';$('providersMetric').textContent=m.providersOnline??'—';$('errorsMetric').textContent=m.errors??'—';$('usersTable').innerHTML=renderUsers(d.users||[]);$('modelsList').innerHTML=list(d.models||[],'providers');$('plansList').innerHTML=list(d.plans||[],'plans');$('logsList').innerHTML=list(d.logs||[],'activity records')}else if(action==='users')$('usersTable').innerHTML=renderUsers(d.users||[]);else if(action==='models')$('modelsList').innerHTML=list(d.models||[],'providers');else if(action==='plans')$('plansList').innerHTML=list(d.plans||[],'plans');else if(action==='logs')$('logsList').innerHTML=list(d.logs||[],'activity records');status(d.message||'Admin data refreshed.')}catch(e){status(e.message+' Check that the admin-dashboard Edge Function is deployed and the schema has been applied.',true)}}
-function enter(u){if(!isAdmin(u)){throw Error('This account does not have the administrator role. Ask the project owner to assign app_metadata.role = admin securely, then sign out and sign in again.')}activeUser=u;$('loginScreen').classList.add('hidden');$('dashboard').classList.remove('hidden');$('signedIn').textContent=u.email||'Administrator';load('overview')}
+async function api(action,body=null){
+ const {data,error}=await client.auth.getSession();if(error)throw error;
+ const token=data?.session?.access_token;if(!token)throw Error('Your sign-in session has expired. Sign in again.');
+ const c=readConfig();
+ const res=await fetch(`${c.url}/functions/v1/admin-dashboard?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});
+ let d={};try{d=await res.json()}catch{}
+ if(!res.ok)throw Error(d.error||`Admin backend returned HTTP ${res.status}.`);return d}
+function pillClass(s){s=String(s||'').toLowerCase();return ['active','online','ok','recorded','admin'].includes(s)?'good':['suspended','error','failed','offline','inactive'].includes(s)?'bad':''}
+
+/* ---------- Renderers ---------- */
+function renderUsers(){
+ const q=$('userQuery').value.trim().toLowerCase(),f=$('userFilter').value;
+ let u=usersCache.filter(x=>(!q||(x.email||'').toLowerCase().includes(q)||(x.id||'').toLowerCase().includes(q)));
+ if(f==='active')u=u.filter(x=>x.status!=='Suspended');
+ if(f==='suspended')u=u.filter(x=>x.status==='Suspended');
+ if(f==='admin')u=u.filter(x=>x.role==='admin');
+ if(!u.length)return $('usersTable').innerHTML='<div class="empty">No matching users.</div>';
+ $('usersTable').innerHTML=`<table><thead><tr><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody>${u.map(x=>{const me=x.id===activeUser?.id;const susp=x.status==='Suspended';return `<tr><td>${esc(x.email||'—')}<br><small>${esc(x.id||'')}</small></td><td><span class="pill ${x.role==='admin'?'good':''}">${esc(x.role||'user')}</span></td><td><span class="pill ${pillClass(x.status)}">${esc(x.status||'Unknown')}</span></td><td>${esc(x.created_at?new Date(x.created_at).toLocaleDateString():'—')}</td><td>${me?'<small>You</small>':`<div class="actions"><button class="sm ${susp?'secondary':'danger'}" data-act="${susp?'unsuspend_user':'suspend_user'}" data-id="${esc(x.id)}" data-email="${esc(x.email)}">${susp?'Unsuspend':'Suspend'}</button><button class="sm secondary" data-act="set_role" data-role="${x.role==='admin'?'user':'admin'}" data-id="${esc(x.id)}" data-email="${esc(x.email)}">${x.role==='admin'?'Remove admin':'Make admin'}</button></div>`}</td></tr>`}).join('')}</tbody></table>`}
+function renderList(items,type){
+ if(!items?.length)return `<div class="empty">No ${type} records returned.</div>`;
+ return items.map(x=>{const title=x.name||x.provider||x.action||'Record';const details=x.model||x.description||(x.actor_email?`${x.actor_email} · ${x.created_at?new Date(x.created_at).toLocaleString():''}`:x.details?JSON.stringify(x.details):'');const st=x.status||'Recorded';return `<div class="list-row"><div><strong>${esc(title)}</strong><small>${esc(details)}</small></div><span class="pill ${pillClass(st)}">${esc(st)}</span></div>`}).join('')}
+function renderPlans(){
+ if(!plansCache.length)return $('plansList').innerHTML='<div class="empty">No plans yet.</div>';
+ $('plansList').innerHTML=plansCache.map(p=>`<div class="list-row"><div><strong>${esc(p.name)}</strong><small>₦${Number(p.monthly_price_ngn||0).toLocaleString()} / month · ${Number(p.monthly_requests||0).toLocaleString()} requests</small></div><div class="actions"><span class="pill ${p.active?'good':'bad'}">${p.active?'Active':'Inactive'}</span><button class="sm secondary" data-plan-edit="${esc(p.id)}">Edit</button><button class="sm secondary" data-plan-toggle="${esc(p.id)}">${p.active?'Disable':'Enable'}</button><button class="sm danger" data-plan-delete="${esc(p.id)}">Delete</button></div></div>`).join('')}
+function renderLogs(){
+ const q=$('logQuery').value.trim().toLowerCase();
+ const l=q?logsCache.filter(x=>JSON.stringify(x).toLowerCase().includes(q)):logsCache;
+ $('logsList').innerHTML=renderList(l,'activity')}
+function renderChart(days){
+ if(!days?.length)return $('usageChart').innerHTML='<div class="empty">No usage data returned.</div>';
+ const W=560,H=170,pad=22,max=Math.max(1,...days.map(d=>d.requests||0)),bw=(W-pad*2)/days.length;
+ const bars=days.map((d,i)=>{const x=pad+i*bw+bw*.15,w=bw*.7,h=Math.round(((d.requests||0)/max)*(H-50)),eh=Math.round(((d.errors||0)/max)*(H-50));const y=H-26-h;return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#5b8cff"><title>${esc(d.date)}: ${d.requests||0} requests, ${d.errors||0} errors</title></rect>${eh?`<rect x="${x}" y="${H-26-eh}" width="${w}" height="${eh}" rx="3" fill="#ff6b7a"/>`:''}${i%2===0?`<text x="${x+w/2}" y="${H-8}" font-size="9" fill="#a7b4c8" text-anchor="middle">${esc(String(d.date).slice(5))}</text>`:''}`}).join('');
+ $('usageChart').innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Usage chart"><text x="${pad}" y="12" font-size="10" fill="#a7b4c8">Peak: ${max}</text>${bars}</svg><div class="legend"><span><i style="background:#5b8cff"></i>Requests</span><span><i style="background:#ff6b7a"></i>Errors</span></div>`}
+
+/* ---------- Loading ---------- */
+async function load(action='overview',query=''){
+ status('Loading secure admin data…');
+ try{
+  const d=await api(action,action==='users'?{query}:null);
+  if(action==='overview'){
+   const m=d.metrics||{};
+   $('usersMetric').textContent=m.registeredUsers??'—';$('requestsMetric').textContent=m.aiRequests??'—';
+   $('costMetric').textContent=m.estimatedCostNgn!=null?'₦'+Number(m.estimatedCostNgn).toLocaleString():'—';
+   $('subsMetric').textContent=m.activeSubscriptions??'—';$('providersMetric').textContent=m.providersOnline??'—';$('errorsMetric').textContent=m.errors??'—';
+   usersCache=d.users||[];renderUsers();
+   $('modelsList').innerHTML=renderList(d.models||[],'providers');
+   plansCache=d.plans||[];renderPlans();
+   logsCache=d.logs||[];renderLogs();
+  }else if(action==='users'){usersCache=d.users||[];renderUsers()}
+  else if(action==='models')$('modelsList').innerHTML=renderList(d.models||[],'providers');
+  else if(action==='plans'){plansCache=d.plans||[];renderPlans()}
+  else if(action==='logs'){logsCache=d.logs||[];renderLogs()}
+  else if(action==='usage')renderChart(d.days);
+  status(d.message||'Admin data refreshed.');
+ }catch(e){status(e.message+' Check that the admin-dashboard Edge Function is deployed and the schema has been applied.',true)}
+}
+async function loadAll(){await load('overview');await load('usage')}
+async function act(action,body,okMsg){
+ try{const r=await api(action,body);toast(r.message||okMsg||'Done.');await loadAll()}catch(e){toast(e.message,true)}}
+
+/* ---------- Plan modal ---------- */
+function openPlanModal(p){
+ $('modalRoot').innerHTML=`<div class="modal-backdrop"><div class="modal"><h3 style="margin-top:0">Edit plan</h3><div class="field"><label>Name</label><input id="mName" value="${esc(p.name)}"></div><div class="grid two"><div class="field"><label>Monthly price (NGN)</label><input id="mPrice" type="number" min="0" value="${Number(p.monthly_price_ngn||0)}"></div><div class="field"><label>Monthly requests</label><input id="mLimit" type="number" min="0" step="1" value="${Number(p.monthly_requests||0)}"></div></div><div class="toolbar"><button id="mSave">Save changes</button><button id="mCancel" class="ghost">Cancel</button></div></div></div>`;
+ const close=()=>$('modalRoot').innerHTML='';
+ $('mCancel').onclick=close;
+ $('modalRoot').firstChild.addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop'))close()});
+ $('mSave').onclick=async()=>{const name=$('mName').value.trim(),price=Number($('mPrice').value),limit=Number($('mLimit').value);
+  if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(limit)||limit<0)return toast('Enter a name, valid price and whole-number limit.',true);
+  close();await act('update_plan',{id:p.id,name,monthlyPriceNgn:price,monthlyRequests:limit,active:p.active},'Plan updated.')}}
+
+/* ---------- Events ---------- */
 $('saveConfig').onclick=()=>{try{initClient();notify('Supabase connection details saved on this device.')}catch(e){notify(e.message,true)}};
-$('sendCode').onclick=async()=>{try{initClient();const email=$('email').value.trim();if(!email)throw Error('Enter your administrator email.');const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false}});if(error)throw error;$('otpArea').classList.remove('hidden');notify('If this email belongs to an account, check your inbox for the verification code.')}catch(e){notify(e.message,true)}};
-$('verifyCode').onclick=async()=>{try{if(!client)initClient();const email=$('email').value.trim(),token=$('otp').value.trim();if(!/^\d{6}$/.test(token))throw Error('Enter the 6-digit code from your email.');const {data,error}=await client.auth.verifyOtp({email,token,type:'email'});if(error)throw error;enter(data.user)}catch(e){notify(e.message,true)}};
-$('refresh').onclick=()=>load('overview');$('searchUsers').onclick=()=>load('users',$('userQuery').value.trim());$('refreshModels').onclick=()=>load('models');$('savePlan').onclick=async()=>{try{const name=$('planName').value.trim(),price=Number($('planPrice').value),limit=Number($('planLimit').value);if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(limit)||limit<0)throw Error('Enter a plan name, valid non-negative price and whole-number request limit.');const r=await api('save_plan',{name,monthlyPriceNgn:price,monthlyRequests:limit});status(r.message||'Plan created.');await load('overview')}catch(e){status(e.message,true)}};
+$('sendCode').onclick=async()=>{const b=$('sendCode');b.disabled=true;try{initClient();const email=$('email').value.trim();if(!email)throw Error('Enter your administrator email.');const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false}});if(error)throw error;$('otpArea').classList.remove('hidden');notify('If this email belongs to an account, check your inbox for the verification code.')}catch(e){notify(e.message,true)}b.disabled=false};
+$('verifyCode').onclick=async()=>{try{if(!client)initClient();const email=$('email').value.trim(),token=$('otp').value.trim();if(!/^\d{6}$/.test(token))throw Error('Enter the 6-digit code from your email.');const {data,error}=await client.auth.verifyOtp({email,token,type:'email'});if(error)throw error;await enter(data.user)}catch(e){notify(e.message,true)}};
+$('email').addEventListener('keydown',e=>{if(e.key==='Enter')$('sendCode').click()});
+$('otp').addEventListener('keydown',e=>{if(e.key==='Enter')$('verifyCode').click()});
+$('refresh').onclick=loadAll;
+$('searchUsers').onclick=renderUsers;$('userQuery').addEventListener('input',renderUsers);$('userFilter').onchange=renderUsers;
+$('logQuery').addEventListener('input',renderLogs);
+$('refreshModels').onclick=()=>load('models');
+$('exportUsers').onclick=()=>{if(!usersCache.length)return toast('No users to export.',true);const rows=[['email','id','role','status','joined'],...usersCache.map(u=>[u.email,u.id,u.role||'user',u.status,u.created_at])];const csv=rows.map(r=>r.map(v=>{let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return `"${s.replace(/"/g,'""')}"`}).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='dai-users.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('usersTable').addEventListener('click',e=>{
+ const b=e.target.closest('[data-act]');if(!b)return;
+ const {act:a,id,email,role}=b.dataset;
+ const msg=a==='suspend_user'?`Suspend ${email}? They will be unable to sign in.`:a==='unsuspend_user'?`Restore access for ${email}?`:role==='admin'?`Give ${email} administrator access?`:`Remove administrator access from ${email}?`;
+ if(!confirm(msg))return;
+ act(a,a==='set_role'?{userId:id,role}:{userId:id});
+});
+$('plansList').addEventListener('click',e=>{
+ const ed=e.target.closest('[data-plan-edit]'),tg=e.target.closest('[data-plan-toggle]'),dl=e.target.closest('[data-plan-delete]');
+ if(ed){const p=plansCache.find(x=>String(x.id)===ed.dataset.planEdit);if(p)openPlanModal(p)}
+ if(tg){const p=plansCache.find(x=>String(x.id)===tg.dataset.planToggle);if(p)act('update_plan',{id:p.id,name:p.name,monthlyPriceNgn:p.monthly_price_ngn,monthlyRequests:p.monthly_requests,active:!p.active},'Plan updated.')}
+ if(dl){const p=plansCache.find(x=>String(x.id)===dl.dataset.planDelete);if(p&&confirm(`Delete plan "${p.name}"? This cannot be undone.`))act('delete_plan',{id:p.id},'Plan deleted.')}
+});
+$('savePlan').onclick=async()=>{
+ const name=$('planName').value.trim(),price=Number($('planPrice').value),limit=Number($('planLimit').value);
+ if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(limit)||limit<0)return toast('Enter a plan name, valid non-negative price and whole-number request limit.',true);
+ await act('save_plan',{name,monthlyPriceNgn:price,monthlyRequests:limit},'Plan created.');
+ $('planName').value='';$('planPrice').value='';$('planLimit').value='';
+};
 $('signOut').onclick=async()=>{try{await client?.auth.signOut()}finally{activeUser=null;$('dashboard').classList.add('hidden');$('loginScreen').classList.remove('hidden');notify('Signed out.')}};
+
+async function enter(u){
+ if(!isAdmin(u)){try{await client.auth.signOut()}catch{}throw Error('This account does not have the administrator role. Ask the project owner to set app_metadata.role = admin securely, then sign in again.')}
+ activeUser=u;$('loginScreen').classList.add('hidden');$('dashboard').classList.remove('hidden');$('signedIn').textContent=u.email||'Administrator';loadAll()}
 try{const c=JSON.parse(localStorage.getItem('daiStudioAdminConfig')||'null');if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||''}}catch{}
-try{if($('sbUrl').value&&$('sbKey').value){initClient();client.auth.getSession().then(({data})=>{if(data?.session?.user){try{enter(data.session.user)}catch(e){notify(e.message,true)}}})}}catch{}
+try{if($('sbUrl').value&&$('sbKey').value){initClient();client.auth.getSession().then(({data})=>{if(data?.session?.user)enter(data.session.user).catch(e=>notify(e.message,true))})}}catch{}
 </script></body></html>
