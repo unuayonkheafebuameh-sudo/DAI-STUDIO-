@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>DAI Studio — All-in-One AI Platform</title>
+<style>
+:root{--bg:#080d18;--panel:#101827;--panel2:#151f31;--line:#27344a;--text:#f4f7fb;--muted:#a7b4c8;--blue:#5b8cff;--cyan:#4de0d0;--danger:#ff6b7a;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#132748 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 15px;font-weight:700;color:white;background:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#202d42;border:1px solid var(--line)}.ghost{background:transparent;border:1px solid var(--line)}.danger{background:#572531}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.brand{font-size:25px;font-weight:900;letter-spacing:-.8px}.brand span{color:var(--cyan)}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:#111d30;border-radius:999px;padding:5px 10px;color:#c8d7ec;font-size:12px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:13px;color:#cbd6e6}.field input,.field textarea,.field select,input,textarea,select{width:100%;color:var(--text);background:#09111f;border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}.field input:focus,.field textarea:focus,input:focus,textarea:focus,select:focus{border-color:var(--blue)}textarea{min-height:120px;resize:vertical}.auth-shell{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch}.auth-intro{padding:8vw;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(38,80,154,.3),rgba(8,13,24,.1))}.auth-intro h1{font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-2px;margin:28px 0 18px}.gradient{background:linear-gradient(90deg,#74a5ff,#4de0d0);-webkit-background-clip:text;background-clip:text;color:transparent}.auth-card-wrap{display:flex;align-items:center;justify-content:center;padding:28px}.auth-card{width:min(470px,100%);background:rgba(16,24,39,.96);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);box-shadow:0 25px 90px #0005}.auth-card h2{margin:0 0 5px;font-size:27px}.oauth-list{display:grid;gap:9px;margin:20px 0}.oauth-btn{width:100%;background:#101a2a;border:1px solid #34435a;display:flex;align-items:center;justify-content:center;gap:10px}.oauth-btn:hover,.secondary:hover,.ghost:hover{filter:brightness(1.15)}.provider-icon{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:#243650;font-size:12px;font-weight:900}.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin:18px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.auth-switch{display:flex;gap:8px;margin:18px 0 4px}.auth-switch button{flex:1}.notice{padding:11px 13px;border-radius:10px;background:#142c34;border:1px solid #245d60;color:#b8fff1;margin:12px 0;font-size:13px}.error{background:#351a27;border-color:#713044;color:#ffc5cf}.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.sidebar{padding:22px 15px;border-right:1px solid var(--line);background:#0a111e;position:sticky;top:0;height:100vh;overflow:auto}.side-brand{padding:5px 10px 25px}.nav-label{color:#75869e;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:12px 10px 6px}.nav-btn{display:flex;width:100%;gap:10px;align-items:center;text-align:left;color:#b9c7da;background:transparent;padding:11px 12px;margin:2px 0;border:1px solid transparent}.nav-btn.active,.nav-btn:hover{background:#17253b;border-color:#2a3d5a;color:white}.main{min-width:0}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;gap:14px;background:#080d18dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}.topbar-right{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#263f66;font-weight:900}.content{padding:28px;max-width:1500px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:22px}.page-head h1{margin:0;font-size:30px;letter-spacing:-.8px}.page-head p{color:var(--muted);margin:5px 0}.grid{display:grid;gap:16px}.grid.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:linear-gradient(145deg,#121d2e,#0f1725);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}.card h3{margin:0 0 8px}.card p{color:var(--muted)}.card-icon{font-size:24px;margin-bottom:12px}.stat{font-size:29px;font-weight:850;margin:7px 0}.tool-card{cursor:pointer;transition:.15s}.tool-card:hover{transform:translateY(-2px);border-color:#5377b5}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.editor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.editor-grid textarea{height:300px;font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}.preview{width:100%;height:420px;background:white;border:1px solid var(--line);border-radius:12px}.list{display:grid;gap:10px}.list-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;background:#0b1422;border:1px solid var(--line);border-radius:12px}.list-row strong{display:block}.list-row small{color:var(--muted)}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #34445c;border-radius:12px}.footer-note{color:#71829b;font-size:12px;margin-top:20px}.status{font-size:12px;color:var(--cyan)}.mobile-menu{display:none}.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:20}.modal{width:min(500px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}.user-email{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:12px}
+@media(max-width:900px){.auth-shell{grid-template-columns:1fr}.auth-intro{padding:35px 26px 10px}.auth-intro h1{font-size:42px;margin:18px 0 10px}.auth-intro .intro-points{display:none}.auth-card-wrap{padding:18px}.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:10;left:-270px;width:250px;transition:left .2s;box-shadow:20px 0 70px #0007}.sidebar.open{left:0}.mobile-menu{display:inline-block}.content{padding:20px 15px}.topbar{padding:0 15px}.grid.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-grid{grid-template-columns:1fr}.editor-grid textarea{height:180px}}@media(max-width:560px){.grid.cards,.grid.two{grid-template-columns:1fr}.page-head{display:block}.page-head .toolbar{margin-top:12px}.topbar .user-email{display:none}.auth-intro h1{font-size:36px}.auth-card{padding:22px}.topbar{height:62px}}
+</style>
+</head>
+<body>
+<div id="authScreen" class="auth-shell">
+  <section class="auth-intro">
+    <div class="brand">DAI<span> STUDIO</span></div>
+    <span class="pill" style="width:max-content;margin-top:28px">YOUR ALL-IN-ONE AI WORKSPACE</span>
+    <h1>Think. Create.<br><span class="gradient">Build without limits.</span></h1>
+    <p class="muted" style="max-width:490px;font-size:17px">One workspace for AI assistance, coding, creative tools and your projects.</p>
+    <div class="intro-points muted" style="display:grid;gap:12px;margin-top:25px">
+      <div>✓ Build and preview websites</div><div>✓ Organize your projects</div><div>✓ Explore AI tools from one workspace</div>
+    </div>
+  </section>
+  <section class="auth-card-wrap">
+    <div class="auth-card">
+      <div class="brand" style="font-size:20px">DAI<span> STUDIO</span></div>
+      <h2 id="authTitle" style="margin-top:18px">Welcome to DAI Studio</h2>
+      <p id="authSubtitle" class="muted">Choose how you want to continue.</p>
+      <div id="authMessage" class="notice hidden"></div>
+      <div id="oauthArea" class="oauth-list">
+        <button class="oauth-btn" data-provider="google"><span class="provider-icon">G</span> Continue with Google</button>
+        <button class="oauth-btn" data-provider="github"><span class="provider-icon">GH</span> Continue with GitHub</button>
+        <button class="oauth-btn" data-provider="gitlab"><span class="provider-icon">GL</span> Continue with GitLab</button>
+        <button class="oauth-btn" data-provider="bitbucket"><span class="provider-icon">BB</span> Continue with Bitbucket</button>
+      </div>
+      <div class="divider" id="emailDivider">OR CONTINUE WITH EMAIL</div>
+      <div id="emailForm">
+        <div class="field"><label for="emailInput">Email address</label><input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email"></div>
+        <div class="field" id="passwordField"><label for="passwordInput">Password</label><input id="passwordInput" type="password" placeholder="At least 8 characters" autocomplete="current-password"></div>
+        <button id="emailAction" style="width:100%">Continue with Email</button>
+      </div>
+      <div id="otpForm" class="hidden">
+        <p class="muted">Enter the 6-digit verification code sent to your email.</p>
+        <div class="field"><label for="otpInput">Verification code</label><input id="otpInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000"></div>
+        <button id="verifyOtp" style="width:100%">Verify email</button>
+        <button id="resendOtp" class="ghost" style="width:100%;margin-top:9px">Resend code</button>
+      </div>
+      <div class="auth-switch"><button id="showSignup" class="secondary">Create account</button><button id="showLogin" class="ghost">Log in</button></div>
+      <p class="small muted">By continuing, you agree to use DAI Studio responsibly. Your account is protected by authentication services.</p>
+      <details style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px">
+        <summary style="cursor:pointer;color:#b9c7da;font-size:13px">Connect Supabase authentication</summary>
+        <p class="small muted">Enter your Supabase project URL and public publishable/anon key. Never enter a secret or service-role key.</p>
+        <div class="field"><label for="authSupabaseUrl">Supabase project URL</label><input id="authSupabaseUrl" placeholder="https://your-project.supabase.co"></div>
+        <div class="field"><label for="authSupabaseKey">Publishable key / anon public key</label><input id="authSupabaseKey" placeholder="sb_publishable_..." autocomplete="off"></div>
+        <button id="saveAuthSupabase" class="secondary" style="width:100%">Save authentication setup</button>
+      </details>
+      <p class="footer-note">Google, GitHub, GitLab and Bitbucket sign-in also need to be enabled in Supabase Authentication settings.</p>
+    </div>
+  </section>
+</div>
+
+<div id="appScreen" class="app hidden">
+  <aside id="sidebar" class="sidebar">
+    <div class="side-brand"><div class="brand">DAI<span> STUDIO</span></div><div class="small muted">All-in-One AI Studio</div></div>
+    <div class="nav-label">Workspace</div>
+    <button class="nav-btn active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav-btn" data-page="assistant">✦ <span>AI Assistant</span></button>
+    <button class="nav-btn" data-page="projects">▣ <span>My Projects</span></button>
+    <button class="nav-btn" data-page="code">⌘ <span>Code Studio</span></button>
+    <div class="nav-label">Creative Studios</div>
+    <button class="nav-btn" data-page="image">▧ <span>AI Image Studio</span></button>
+    <button class="nav-btn" data-page="video">▶ <span>AI Video Studio</span></button>
+    <button class="nav-btn" data-page="writer">✎ <span>AI Writer</span></button>
+    <button class="nav-btn" data-page="voice">♫ <span>AI Voice Studio</span></button>
+    <div class="nav-label">Integrations</div>
+    <button class="nav-btn" data-page="github">⌥ <span>GitHub Import</span></button>
+    <button class="nav-btn" data-page="platforms">↗ <span>Other Platforms</span></button>
+    <button class="nav-btn" data-page="models">✧ <span>AI Models & Setup</span></button>
+    <button class="nav-btn" data-page="settings">⚙ <span>Settings</span></button>
+    <div class="nav-label">Account</div>
+    <button class="nav-btn" id="signOutSide">⇥ <span>Sign out</span></button>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button id="mobileMenu" class="mobile-menu secondary">☰</button><div><strong id="topTitle">Dashboard</strong><div class="small muted">Your creative workspace</div></div></div><div class="topbar-right"><span class="pill">● <span id="connectionStatus" style="margin-left:5px">Local workspace</span></span><span id="userEmail" class="user-email"></span><div id="userAvatar" class="avatar">D</div></div></header>
+    <div id="pageContent" class="content"></div>
+  </main>
+</div>
+
+<div id="modalRoot"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'davidAI_workspace_v2';
+const CONFIG_KEY = 'davidAI_public_config';
+let supabaseClient = null, currentUser = null, authMode = 'signup', otpEmail = '', currentPage = 'dashboard';
+let state = loadJSON(STORAGE_KEY, {projects:[], code:{html:'',css:'',js:''}, settings:{supabaseUrl:'',supabaseKey:''}, notes:[]});
+function loadJSON(k,f){try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function notice(message,isError=false){const el=$('authMessage');el.textContent=message;el.classList.remove('hidden','error');if(isError)el.classList.add('error')}
+function clearNotice(){$('authMessage').classList.add('hidden')}
+function config(){return {url:(state.settings.supabaseUrl||'').trim().replace(/\/$/,''),key:(state.settings.supabaseKey||'').trim()}}
+function connectSupabase(){
+ const c=config();
+ if(!c.url||!c.key){supabaseClient=null;return false}
+ try{
+  if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(c.url))throw new Error('Enter a valid Supabase project URL ending in .supabase.co.');
+  if(!window.supabase||!window.supabase.createClient)throw new Error('Authentication library could not load. Check your internet connection.');
+  supabaseClient=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  return true;
+ }catch(e){supabaseClient=null;throw e}
+}
+function setAuthMode(mode){authMode=mode;clearNotice();$('otpForm').classList.add('hidden');$('emailForm').classList.remove('hidden');$('oauthArea').classList.remove('hidden');$('emailDivider').classList.remove('hidden');$('authTitle').textContent=mode==='signup'?'Create your DAI Studio account':'Welcome back';$('authSubtitle').textContent=mode==='signup'?'Choose a provider or sign up with your email.':'Choose a provider or log in with your email.';$('emailAction').textContent=mode==='signup'?'Send verification code':'Log in';$('showSignup').className=mode==='signup'?'':'ghost';$('showLogin').className=mode==='login'?'':'ghost';$('passwordField').classList.toggle('hidden',mode==='signup');$('passwordInput').autocomplete=mode==='signup'?'new-password':'current-password';}
+function showAuth(){ $('authScreen').classList.remove('hidden');$('appScreen').classList.add('hidden');setAuthMode('signup');}
+function showApp(user){
+ currentUser=user||null;
+ $('authScreen').classList.add('hidden');$('appScreen').classList.remove('hidden');
+ $('userEmail').textContent=user?.email||'Local workspace';$('userAvatar').textContent=(user?.email||'D').slice(0,1).toUpperCase();
+ $('connectionStatus').textContent=supabaseClient?(user?'Authenticated':'Connected'):'Local workspace';
+ renderPage(currentPage);
+}
+async function refreshSession(){
+ if(!supabaseClient)return;
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error)console.warn(error);
+ if(data?.session?.user){currentUser=data.session.user;showApp(currentUser)}
+}
+async function oauth(provider){
+ clearNotice();
+ try{
+  if(!connectSupabase())throw new Error('Connect Supabase first in AI Models & Setup. Social sign-in will work after the provider is enabled in Supabase Authentication settings.');
+  const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:window.location.href.split('#')[0]}});
+  if(error)throw error;
+ }catch(e){notice(e.message||'Could not start sign-in.',true)}
+}
+document.querySelectorAll('[data-provider]').forEach(b=>b.addEventListener('click',()=>oauth(b.dataset.provider)));
+$('authSupabaseUrl').value=state.settings.supabaseUrl||'';
+$('authSupabaseKey').value=state.settings.supabaseKey||'';
+$('saveAuthSupabase').onclick=()=>{
+ clearNotice();
+ state.settings.supabaseUrl=$('authSupabaseUrl').value.trim();
+ state.settings.supabaseKey=$('authSupabaseKey').value.trim();
+ saveState();
+ try{
+  if(!connectSupabase())throw new Error('Enter both the Supabase project URL and public key.');
+  notice('Supabase client configured. Enable email auth and the social providers in Supabase before signing in.');
+ }catch(e){notice(e.message,true)}
+};
+$('showSignup').onclick=()=>setAuthMode('signup');$('showLogin').onclick=()=>setAuthMode('login');
+$('emailAction').onclick=async()=>{
+ clearNotice();
+ const email=$('emailInput').value.trim(),password=$('passwordInput').value;
+ if(!email||!email.includes('@'))return notice('Enter a valid email address.',true);
+ try{
+  if(!connectSupabase())throw new Error('Supabase is not connected yet. Open AI Models & Setup after entering the project URL and publishable key.');
+  if(authMode==='signup'){
+   const {error}=await supabaseClient.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:window.location.href.split('#')[0]}});
+   if(error)throw error;
+   otpEmail=email;$('emailForm').classList.add('hidden');$('oauthArea').classList.add('hidden');$('emailDivider').classList.add('hidden');$('otpForm').classList.remove('hidden');
+   notice('A verification code has been requested. Check your inbox and spam folder.');
+  }else{
+   if(!password)return notice('Enter your password.',true);
+   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+   if(error)throw error;
+   if(data.user&&!data.user.email_confirmed_at)throw new Error('Please verify your email before continuing.');
+   showApp(data.user);
+  }
+ }catch(e){notice(e.message||'Authentication failed.',true)}
+};
+$('verifyOtp').onclick=async()=>{
+ clearNotice();const token=$('otpInput').value.trim();
+ if(!/^\d{6}$/.test(token))return notice('Enter the 6-digit code from your email.',true);
+ try{
+  if(!supabaseClient)connectSupabase();
+  const {data,error}=await supabaseClient.auth.verifyOtp({email:otpEmail,token,type:'email'});
+  if(error)throw error;
+  if(!data.user)throw new Error('Verification was not completed. Try again.');
+  showApp(data.user);
+ }catch(e){notice(e.message||'Could not verify that code.',true)}
+};
+$('resendOtp').onclick=async()=>{
+ try{if(!supabaseClient)connectSupabase();const {error}=await supabaseClient.auth.signInWithOtp({email:otpEmail,options:{shouldCreateUser:true}});if(error)throw error;notice('A new code has been requested. Check your inbox.')}catch(e){notice(e.message||'Could not resend the code.',true)}
+};
+async function signOut(){
+ if(supabaseClient){try{await supabaseClient.auth.signOut()}catch(e){console.warn(e)}}
+ currentUser=null;showAuth();
+}
+$('signOutSide').onclick=signOut;
+$('mobileMenu').onclick=()=>$('sidebar').classList.toggle('open');
+document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.addEventListener('click',()=>{currentPage=b.dataset.page;$('sidebar').classList.remove('open');renderPage(currentPage)}));
+function pageHead(title,desc,actions=''){return `<div class="page-head"><div><h1>${title}</h1><p>${desc}</p></div><div class="toolbar">${actions}</div></div>`}
+function renderPage(page){
+ currentPage=page;document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+ const names={dashboard:'Dashboard',assistant:'AI Assistant',projects:'My Projects',code:'Code Studio',image:'AI Image Studio',video:'AI Video Studio',writer:'AI Writer',voice:'AI Voice Studio',github:'GitHub Import',platforms:'Other Platforms',models:'AI Models & Setup',settings:'Settings'};
+ $('topTitle').textContent=names[page]||'DAI Studio';
+ const fn={dashboard:dashboardPage,assistant:assistantPage,projects:projectsPage,code:codePage,image:()=>promptStudio('image'),video:()=>promptStudio('video'),writer:()=>promptStudio('writer'),voice:()=>promptStudio('voice'),github:githubPage,platforms:platformsPage,models:modelsPage,settings:settingsPage};
+ $('pageContent').innerHTML=(fn[page]||dashboardPage)();
+ bindPage(page);
+}
+function dashboardPage(){return `${pageHead('Welcome to DAI Studio','Your workspace for building, creating and organizing.')}<div class="grid cards"><div class="card"><div class="card-icon">📁</div><div class="muted">Saved projects</div><div class="stat">${state.projects.length}</div><button class="secondary" data-go="projects">Open projects</button></div><div class="card"><div class="card-icon">⌘</div><div class="muted">Code workspace</div><div class="stat">Ready</div><button class="secondary" data-go="code">Open Code Studio</button></div><div class="card"><div class="card-icon">✦</div><div class="muted">AI connection</div><div class="stat" style="font-size:20px">${supabaseClient?'Backend configured':'Setup required'}</div><button class="secondary" data-go="models">Configure AI</button></div></div><h2 style="margin-top:30px">Your tools</h2><div class="grid cards">${toolCard('assistant','🤖','AI Assistant','Prepare prompts and connect an AI backend later.')}${toolCard('code','💻','Code Studio','Edit HTML, CSS and JavaScript with live preview.')}${toolCard('image','🎨','AI Image Studio','Prepare image-generation prompts.')}${toolCard('video','🎬','AI Video Studio','Prepare video concepts and prompts.')}${toolCard('writer','✍️','AI Writer','Draft content prompts and writing briefs.')}${toolCard('voice','🎙️','AI Voice Studio','Prepare voiceover scripts and briefs.')}</div><p class="footer-note">Note: creative prompt tools prepare briefs locally. They do not generate AI media until a real provider is connected.</p>`}
+function toolCard(page,icon,title,desc){return `<div class="card tool-card" data-go="${page}"><div class="card-icon">${icon}</div><h3>${title}</h3><p>${desc}</p><span class="status">Open tool →</span></div>`}
+function assistantPage(){return `${pageHead('AI Assistant','Compose a prompt for an AI model. Actual responses require a configured backend.')}<div class="card"><div class="field"><label>What do you need help with?</label><textarea id="assistantPrompt" placeholder="Describe your task, question or idea..."></textarea></div><div class="toolbar"><button id="prepareAssistant">Prepare prompt</button><button class="secondary" id="copyAssistant">Copy prompt</button></div><div id="assistantResult" class="notice hidden"></div><p class="small muted">For security, AI provider API keys must be stored in a backend function, never in this HTML file.</p></div>`}
+function projectsPage(){return `${pageHead('My Projects','Projects are currently saved in this browser on this device.','<button id="newProject">＋ New project</button>')}<div id="projectList" class="list">${state.projects.length?state.projects.map((p,i)=>`<div class="list-row"><div><strong>${esc(p.name)}</strong><small>${esc(p.type||'General')} · ${esc(p.date||'')}</small></div><div class="toolbar"><button class="secondary" data-open-project="${i}">Open</button><button class="danger" data-delete-project="${i}">Delete</button></div></div>`).join(''):'<div class="empty">No projects yet. Create your first project.</div>'}</div>`}
+function codePage(){return `${pageHead('Code Studio','Edit your HTML, CSS and JavaScript, then preview the result.','<button id="saveCode" class="secondary">Save locally</button><button id="downloadCode">Download HTML</button>')}<div class="toolbar"><button id="runCode">▶ Run preview</button><button class="secondary" id="clearCode">Clear editors</button></div><div class="editor-grid"><div><label>HTML</label><textarea id="htmlCode" spellcheck="false" placeholder="<h1>Hello DAI Studio</h1>">${esc(state.code.html)}</textarea></div><div><label>CSS</label><textarea id="cssCode" spellcheck="false" placeholder="body { font-family: sans-serif; }">${esc(state.code.css)}</textarea></div><div><label>JavaScript</label><textarea id="jsCode" spellcheck="false" placeholder="console.log('Hello');">${esc(state.code.js)}</textarea></div></div><h3>Live Preview</h3><iframe id="codePreview" class="preview" sandbox="allow-scripts"></iframe>`}
+function promptStudio(kind){const data={image:['AI Image Studio','Describe the image you want to create.','A clean editorial illustration of...'],video:['AI Video Studio','Prepare a video concept and generation prompt.','A 10-second cinematic video showing...'],writer:['AI Writer','Prepare a writing brief for your chosen task.','Write a clear, engaging article about...'],voice:['AI Voice Studio','Prepare a voiceover script and voice direction.','Narration script and tone...']}[kind];return `${pageHead(data[0],data[1])}<div class="card"><div class="field"><label>${kind==='writer'?'Writing brief':kind==='voice'?'Script / voice direction':'Creative brief'}</label><textarea id="studioPrompt" placeholder="${data[2]}"></textarea></div><div class="field"><label>Style or additional instructions</label><input id="studioStyle" placeholder="e.g. modern, professional, friendly, cinematic"></div><div class="toolbar"><button id="buildPrompt">Prepare prompt</button><button class="secondary" id="copyStudio">Copy prompt</button></div><div class="field"><label>Prepared prompt</label><textarea id="studioResult" readonly placeholder="Your prepared prompt will appear here."></textarea></div><p class="small muted">This tool prepares prompts only. Connect a compatible provider through a secure backend to generate images, video, writing or audio.</p></div>`}
+function githubPage(){return `${pageHead('GitHub Import','Import a file from a public GitHub repository into Code Studio.')}<div class="card"><div class="field"><label>GitHub repository URL</label><input id="repoUrl" placeholder="https://github.com/owner/repository"></div><button id="loadRepo">Load repository files</button><div id="repoStatus" class="notice hidden"></div><div class="field"><label>Files</label><select id="repoFiles"><option value="">Load a repository first</option></select></div><div class="toolbar"><button id="importRepoFile">Import selected file to editor</button></div><p class="small muted">Only public repositories are supported here. Private repositories and pushing changes require secure OAuth/backend integration.</p></div>`}
+function platformsPage(){const items=[['GitHub','https://github.com/'],['GitLab','https://gitlab.com/'],['Bitbucket','https://bitbucket.org/'],['Replit','https://replit.com/'],['CodePen','https://codepen.io/'],['Cloudflare','https://dash.cloudflare.com/'],['Netlify','https://app.netlify.com/'],['Vercel','https://vercel.com/'],['WordPress','https://wordpress.com/']];return `${pageHead('Other Platforms','Quick access to development, hosting and publishing platforms.')}<div class="grid cards">${items.map(([n,u])=>`<div class="card"><h3>${n}</h3><p>Open ${n} in a new tab.</p><a href="${u}" target="_blank" rel="noopener noreferrer"><button class="secondary">Open platform ↗</button></a></div>`).join('')}</div><p class="footer-note">These are shortcuts, not connected accounts. OAuth connections must be implemented separately.</p>`}
+function modelsPage(){return `${pageHead('AI Models & Setup','Configure Supabase authentication. Provider API calls need secure backend functions.')}<div class="grid two"><div class="card"><h3>Supabase connection</h3><p>Use your project URL and publishable key. Never enter a secret/service-role key here.</p><div class="field"><label>Project URL</label><input id="supabaseUrl" placeholder="https://your-project.supabase.co" value="${esc(state.settings.supabaseUrl||'')}"></div><div class="field"><label>Publishable key / anon public key</label><input id="supabaseKey" placeholder="sb_publishable_..." value="${esc(state.settings.supabaseKey||'')}" autocomplete="off"></div><div class="toolbar"><button id="saveSupabase">Save & connect</button><button class="secondary" id="testSupabase">Test session</button></div><div id="supabaseStatus" class="notice hidden"></div></div><div class="card"><h3>Provider directory</h3><p>Choose a provider to configure in its official dashboard. These links do not activate model calls by themselves.</p><div class="list">${[['OpenAI','https://platform.openai.com/'],['Google AI Studio / Gemini','https://aistudio.google.com/'],['Anthropic / Claude','https://console.anthropic.com/'],['OpenRouter','https://openrouter.ai/'],['Qwen','https://qwen.ai/']].map(([n,u])=>`<div class="list-row"><strong>${n}</strong><a href="${u}" target="_blank" rel="noopener noreferrer">Open ↗</a></div>`).join('')}</div><p class="small muted">Do not paste private AI API keys into the browser. Store them in server-side secrets and call them through Edge Functions.</p></div></div><div class="card" style="margin-top:16px"><h3>Authentication setup checklist</h3><ol class="muted"><li>In Supabase, open Authentication and configure your site URL and redirect URLs.</li><li>Enable Google, GitHub, GitLab and Bitbucket under sign-in providers and configure each provider's OAuth credentials.</li><li>Configure email templates and SMTP/email delivery for OTP codes.</li><li>Use database row-level security (RLS) for all user-owned records.</li></ol></div>`}
+function settingsPage(){return `${pageHead('Settings','Manage your local workspace and account.')}<div class="grid two"><div class="card"><h3>Account</h3><p>${esc(currentUser?.email||'Local workspace')}</p><p class="small muted">${currentUser?.email_confirmed_at?'Email verified':currentUser?'Signed in; check verification status in Supabase':'Not connected to an online account'}</p><button id="settingsSignOut" class="secondary">Sign out</button></div><div class="card"><h3>Local data</h3><p class="muted">Projects and code are saved in this browser. They are not synced to the cloud yet.</p><div class="toolbar"><button id="exportBackup" class="secondary">Export backup</button><button id="importBackup" class="secondary">Import backup</button><input id="backupFile" class="hidden" type="file" accept="application/json"></div><button id="resetLocal" class="danger">Reset local workspace</button></div></div><p class="footer-note">Do not share your passwords, verification codes, database password or private API keys.</p>`}
+function bindPage(page){
+ document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>renderPage(b.dataset.go));
+ if(page==='assistant'){
+  $('prepareAssistant').onclick=()=>{$('assistantResult').textContent=$('assistantPrompt').value.trim()?'Prompt prepared. Connect an AI backend to receive a real AI response.':'Enter a prompt first.';$('assistantResult').classList.remove('hidden')};
+  $('copyAssistant').onclick=()=>copyText($('assistantPrompt').value);
+ }
+ if(page==='projects'){
+  $('newProject').onclick=()=>{const name=prompt('Project name?');if(!name?.trim())return;state.projects.unshift({name:name.trim(),type:'General',date:new Date().toLocaleDateString()});saveState();renderPage('projects')};
+  document.querySelectorAll('[data-delete-project]').forEach(b=>b.onclick=()=>{const i=+b.dataset.deleteProject;if(confirm('Delete this project?')){state.projects.splice(i,1);saveState();renderPage('projects')}});
+  document.querySelectorAll('[data-open-project]').forEach(b=>b.onclick=()=>{const p=state.projects[+b.dataset.openProject];if(p){state.code.html=`<main><h1>${esc(p.name)}</h1><p>Project workspace</p></main>`;saveState();renderPage('code')}});
+ }
+ if(page==='code'){
+  const update=()=>{state.code={html:$('htmlCode').value,css:$('cssCode').value,js:$('jsCode').value};};
+  $('runCode').onclick=()=>{update();const doc=`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>${state.code.css}</style></head><body>${state.code.html}<script>${state.code.js.replace(/<\/script/gi,'<\\/script')}<\/script></body></html>`;$('codePreview').srcdoc=doc};
+  $('saveCode').onclick=()=>{update();saveState();alert('Code saved in this browser.')};
+  $('clearCode').onclick=()=>{if(confirm('Clear all three editors?')){$('htmlCode').value='';$('cssCode').value='';$('jsCode').value='';update();saveState();$('codePreview').srcdoc=''}};
+  $('downloadCode').onclick=()=>{update();const doc=`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${state.code.css}</style></head><body>${state.code.html}<script>${state.code.js.replace(/<\/script/gi,'<\\/script')}<\/script></body></html>`;downloadFile('david-ai-project.html',doc,'text/html')};
+  if(state.code.html||state.code.css||state.code.js)$('runCode').click();
+ }
+ if(['image','video','writer','voice'].includes(page)){
+  $('buildPrompt').onclick=()=>{$('studioResult').value=`${$('studioPrompt').value.trim()}\n\nStyle / instructions: ${$('studioStyle').value.trim()}\n\nPlease follow the brief accurately and produce a polished, high-quality result.`.trim()};
+  $('copyStudio').onclick=()=>copyText($('studioResult').value||$('studioPrompt').value);
+ }
+ if(page==='github'){
+  $('loadRepo').onclick=async()=>{
+   const status=$('repoStatus');status.classList.remove('hidden','error');status.textContent='Loading public repository files…';
+   try{
+    const m=$('repoUrl').value.trim().match(/github\.com\/([^/]+)\/([^/#?]+)/i);if(!m)throw new Error('Enter a valid public GitHub repository URL.');
+    const owner=m[1],repo=m[2].replace(/\.git$/,'');
+    const res=await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`);if(!res.ok)throw new Error('Repository not found, private, or GitHub rate limit reached.');
+    const info=await res.json();const treeRes=await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(info.default_branch)}?recursive=1`);if(!treeRes.ok)throw new Error('Could not list repository files.');
+    const tree=await treeRes.json();const files=(tree.tree||[]).filter(x=>x.type==='blob'&&/\.(html?|css|js|json|md|txt|tsx?|jsx?)$/i.test(x.path));
+    $('repoFiles').innerHTML=files.map(f=>`<option value="${esc(f.path)}" data-owner="${esc(owner)}" data-repo="${esc(repo)}" data-branch="${esc(info.default_branch)}">${esc(f.path)}</option>`).join('')||'<option value="">No supported text files found</option>';
+    status.textContent=`Loaded ${files.length} supported files from ${owner}/${repo}.`;
+   }catch(e){status.textContent=e.message;status.classList.add('error')}
+  };
+  $('importRepoFile').onclick=async()=>{
+   const opt=$('repoFiles').selectedOptions[0];if(!opt||!opt.value)return alert('Load a repository and select a file first.');
+   const status=$('repoStatus');status.classList.remove('hidden','error');status.textContent='Importing file…';
+   try{const raw=`https://raw.githubusercontent.com/${opt.dataset.owner}/${opt.dataset.repo}/${opt.dataset.branch}/${opt.value.split('/').map(encodeURIComponent).join('/')}`;const r=await fetch(raw);if(!r.ok)throw new Error('Could not download selected file.');const txt=await r.text();const ext=opt.value.split('.').pop().toLowerCase();if(ext==='css')state.code.css=txt;else if(ext==='js'||ext==='ts'||ext==='jsx'||ext==='tsx')state.code.js=txt;else state.code.html=txt;saveState();status.textContent=`Imported ${opt.value}. Open Code Studio to view it.`}catch(e){status.textContent=e.message;status.classList.add('error')}
+  };
+ }
+ if(page==='models'){
+  $('saveSupabase').onclick=()=>{state.settings.supabaseUrl=$('supabaseUrl').value.trim();state.settings.supabaseKey=$('supabaseKey').value.trim();saveState();try{connectSupabase();$('supabaseStatus').textContent='Supabase client initialized. Sign-in providers and redirect settings must also be configured in Supabase.';$('supabaseStatus').classList.remove('hidden','error');$('connectionStatus').textContent='Supabase configured'}catch(e){$('supabaseStatus').textContent=e.message;$('supabaseStatus').classList.remove('hidden');$('supabaseStatus').classList.add('error')}};
+  $('testSupabase').onclick=async()=>{const s=$('supabaseStatus');s.classList.remove('hidden','error');try{if(!connectSupabase())throw new Error('Enter and save your Supabase project URL and publishable key first.');const {data,error}=await supabaseClient.auth.getSession();if(error)throw error;s.textContent=data.session?'Connection works. A session is active.':'Client initialized. No user session is currently active.'}catch(e){s.textContent=e.message;s.classList.add('error')}};
+ }
+ if(page==='settings'){
+  $('settingsSignOut').onclick=signOut;
+  $('exportBackup').onclick=()=>downloadFile('david-ai-backup.json',JSON.stringify(state,null,2),'application/json');
+  $('importBackup').onclick=()=>$('backupFile').click();
+  $('backupFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj||typeof obj!=='object')throw new Error();state={...state,...obj};saveState();renderPage('settings');alert('Backup imported.')}catch(_){alert('That backup file is not valid.')}};
+  $('resetLocal').onclick=()=>{if(confirm('Reset local projects, code and settings on this browser? This does not delete your Supabase account.')){state={projects:[],code:{html:'',css:'',js:''},settings:{supabaseUrl:'',supabaseKey:''},notes:[]};saveState();supabaseClient=null;renderPage('settings')}};
+ }
+}
+function copyText(text){if(!text)return alert('Nothing to copy yet.');if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(()=>alert('Copied.')).catch(()=>fallbackCopy(text));else fallbackCopy(text)}
+function fallbackCopy(text){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Copied.')}
+function downloadFile(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+try{if(config().url&&config().key)connectSupabase()}catch(e){console.warn('Supabase configuration needs attention:',e.message)}
+if(supabaseClient){
+ supabaseClient.auth.onAuthStateChange((event,session)=>{if(session?.user){currentUser=session.user;showApp(session.user)}else if(event==='SIGNED_OUT'){currentUser=null;showAuth()}});
+ refreshSession();
+}
+if(currentUser)showApp(currentUser);else showAuth();
+})();
+</script>
+</body>
+</html>
