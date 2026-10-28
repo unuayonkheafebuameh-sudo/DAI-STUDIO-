@@ -118,7 +118,7 @@ async function api(action,body=null){
  const {data,error}=await client.auth.getSession();if(error)throw error;
  const token=data?.session?.access_token;if(!token)throw Error('Your sign-in session has expired. Sign in again.');
  const c=readConfig();
- const res=await fetch(`${c.url}/functions/v1/admin-dashboard?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});
+ const res=await fetch(`${c.url}//functions/v1/super-action?action=?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});
  let d={};try{d=await res.json()}catch{}
  if(!res.ok)throw Error(d.error||`Admin backend returned HTTP ${res.status}.`);return d}
 function pillClass(s){s=String(s||'').toLowerCase();return ['active','online','ok','recorded','admin'].includes(s)?'good':['suspended','error','failed','offline','inactive'].includes(s)?'bad':''}
