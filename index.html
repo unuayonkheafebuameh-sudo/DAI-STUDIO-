@@ -236,7 +236,7 @@ async function sendChat(){
   const {data:s}=await supabaseClient.auth.getSession();const token=s?.session?.access_token;
   if(!token)throw new Error('Sign in with an online account to use the assistant.');
   const c=config();
-  const res=await fetch(`${c.url}/functions/v1/ai-chat`,{method:'POST',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},body:JSON.stringify({messages:state.chat.slice(-20)})});
+  const res=await fetch(`${c.url}//functions/v1/smart-endpoint`,{method:'POST',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},body:JSON.stringify({messages:state.chat.slice(-20)})});
   const d=await res.json().catch(()=>({}));
   if(!res.ok)throw new Error(d.error||`Backend error (HTTP ${res.status}). Is the ai-chat function deployed?`);
   state.chat.push({role:'assistant',content:d.reply||'(empty reply)'});
