@@ -1,224 +1,139 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>DAI Studio — Admin Dashboard</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{--bg:#080d18;--panel:#101827;--panel2:#151f31;--line:#27344a;--text:#f4f7fb;--muted:#a7b4c8;--blue:#5b8cff;--cyan:#4de0d0;--danger:#ff6b7a;--warn:#ffd27a;--radius:18px}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#132748 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer;border:0;border-radius:10px;padding:10px 14px;font-weight:650;color:#fff;background:var(--blue)}
-button:disabled{opacity:.55;cursor:not-allowed}
-button.secondary{background:#202d43;border:1px solid var(--line)}
-button.ghost{background:transparent;border:1px solid var(--line)}
-button.danger{background:#572531}
-button.sm{padding:6px 10px;font-size:12px;border-radius:8px}
-button:hover{filter:brightness(1.12)}
-.hidden{display:none!important}.muted,small{color:var(--muted)}.small{font-size:12px}
-input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:#0b1321;color:var(--text);outline:none}
-input:focus,select:focus{border-color:var(--blue)}
-.field{margin:12px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-.admin-shell{max-width:1240px;margin:0 auto;padding:24px}
-.login-wrap{max-width:520px;margin:7vh auto}
-.brand{font-weight:900;font-size:23px;letter-spacing:.4px}.brand span{color:var(--cyan)}
-.card{background:linear-gradient(145deg,#121d2e,#0f1725);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-width:0}
-.card h2{margin:0 0 6px;font-size:18px}
-.grid{display:grid;gap:14px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.metric-label{font-size:13px;color:var(--muted)}.metric-value{font-size:clamp(24px,4vw,34px);font-weight:750;margin:8px 0}
-.page-head{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;margin:18px 0}
-.page-head h1{margin:0}.page-head h2{margin:0}.page-head p{margin:4px 0}
-.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.toolbar input,.toolbar select{max-width:230px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px}
-.status{color:var(--cyan);font-size:13px}
-.notice{padding:12px 14px;border:1px solid #245d60;border-radius:12px;background:#142c34;color:#b8fff1;margin:12px 0;font-size:13px}
-.notice.error{border-color:#713044;background:#351a27;color:#ffd7dc}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
-th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
-th{color:#b9c7da;background:#0b1422}tr:last-child td{border-bottom:0}
-.list-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
-.list-row:last-child{border-bottom:0}.list-row small{display:block;margin-top:4px;overflow-wrap:anywhere}
-.pill{align-self:center;background:#20324c;border-radius:20px;padding:4px 9px;font-size:12px;white-space:nowrap}
-.pill.good{background:#12372f;color:#8ef0d0}.pill.bad{background:#4a2230;color:#ffc5cf}.pill.warn{background:#4a3d1b;color:var(--warn)}
-.empty{color:var(--muted);padding:15px 0;text-align:center}
-.footer-note{color:#71829b;font-size:12px;line-height:1.5;margin-top:18px}
-.actions{display:flex;gap:6px;flex-wrap:wrap}
-.chart{width:100%;height:auto;display:block}
-.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:6px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
-.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:20}
-.modal{width:min(480px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
-.toasts{position:fixed;bottom:18px;right:18px;left:18px;display:grid;gap:8px;justify-items:end;z-index:50;pointer-events:none}
-.toast{background:#142c34;border:1px solid #245d60;color:#b8fff1;padding:11px 14px;border-radius:12px;font-size:13px;max-width:360px;box-shadow:0 10px 40px #0007}
-.toast.error{background:#351a27;border-color:#713044;color:#ffc5cf}
-@media(max-width:760px){.admin-shell{padding:14px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:1fr}.toolbar input,.toolbar select{max-width:none}.toast{max-width:none}.toasts{justify-items:stretch}}
-@media(max-width:440px){.cards{grid-template-columns:1fr}}
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>DAI Studio — Admin</title>
+<style>
+:root{--bg:#080d18;--l:#27344a;--t:#f4f7fb;--m:#a7b4c8;--b:#5b8cff;--c:#4de0d0}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(circle at 85% -10%,#1b3a73 0,transparent 40%),radial-gradient(circle at 0 110%,#0f4a55 0,transparent 35%),var(--bg);color:var(--t);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,select{font:inherit}
+button{cursor:pointer;border:0;color:#fff;border-radius:11px;padding:10px 14px;font-weight:700;background:#202d42}
+button:disabled{opacity:.5;cursor:wait}button:hover{filter:brightness(1.12)}
+input,select{width:100%;color:var(--t);background:#0a1220;border:1px solid var(--l);border-radius:11px;padding:11px;outline:none}input:focus{border-color:var(--b)}
+.go{background:linear-gradient(135deg,#5b8cff,#4de0d0);color:#06101f}.dg{background:#572531}.gh{background:transparent;border:1px solid var(--l)}.sm{padding:6px 10px;font-size:12px;border-radius:8px}.w{width:100%;margin-top:10px}
+.m{color:var(--m)}.brand{font-weight:900;font-size:21px;letter-spacing:-.5px}.brand span{color:var(--c);margin-left:4px}
+.card{background:#101827cc;border:1px solid var(--l);border-radius:20px;padding:18px;backdrop-filter:blur(10px)}
+.card h3{margin:0 0 4px;font-size:17px}
+label{display:block;font-size:13px;color:#cbd6e6;margin:10px 0 6px}
+.pill{display:inline-block;border-radius:99px;padding:3px 10px;font-size:12px;background:#20324c;white-space:nowrap}.pill.ok{background:#12372f;color:#8ef0d0}.pill.bad{background:#4a2230;color:#ffc5cf}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sb{justify-content:space-between}
+.note{padding:10px 12px;border-radius:11px;background:#142c34;border:1px solid #245d60;color:#b8fff1;font-size:13px;margin-top:12px}.note.er{background:#351a27;border-color:#713044;color:#ffc5cf}
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:20px}#login .card{width:min(460px,100%);padding:26px}
+details{margin-top:14px;border-top:1px solid var(--l);padding-top:12px;font-size:13px}summary{cursor:pointer;color:#b9c7da}
+/* shell */
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:#080d18d9;backdrop-filter:blur(14px);border-bottom:1px solid var(--l)}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#0a111ef2;backdrop-filter:blur(14px);border-top:1px solid var(--l);z-index:9}
+.nb{flex:1;background:none;border-radius:0;padding:9px 2px;font-size:11px;color:var(--m);display:grid;gap:2px;justify-items:center}.nb.on{color:var(--c)}.nb i{font-style:normal;font-size:19px}
+main{padding:16px 14px 96px;max-width:1250px;margin:auto}
+h1{margin:6px 0 2px;font-size:26px;letter-spacing:-.6px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+.k{font-size:13px;color:var(--m)}.v{font-size:clamp(24px,5vw,34px);font-weight:800;margin:6px 0;letter-spacing:-1px}
+.gr{display:grid;gap:14px}.two{grid-template-columns:1fr}
+.li{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--l);align-items:center}.li:last-child{border-bottom:0}.li small{display:block;color:var(--m);overflow-wrap:anywhere}
+.tw{overflow:auto;border:1px solid var(--l);border-radius:14px}table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--l);overflow-wrap:anywhere}th{background:#0b1422;color:#b9c7da}tr:last-child td{border-bottom:0}
+.em{color:var(--m);text-align:center;padding:18px 0}
+.chart{width:100%;height:auto;display:block}.lg{display:flex;gap:14px;font-size:12px;color:var(--m);margin-top:6px}.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.mb{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:30}.md{width:min(460px,100%);background:#101827;border:1px solid var(--l);border-radius:20px;padding:22px}
+.toasts{position:fixed;bottom:84px;left:14px;right:14px;display:grid;gap:8px;justify-items:center;z-index:50;pointer-events:none}
+.toast{background:#142c34;border:1px solid #245d60;color:#b8fff1;padding:10px 14px;border-radius:12px;font-size:13px;max-width:400px}.toast.er{background:#351a27;border-color:#713044;color:#ffc5cf}
+@media(min-width:900px){nav{top:0;right:auto;width:92px;flex-direction:column;border-top:0;border-right:1px solid var(--l);padding-top:66px}.nb{flex:none;padding:14px 0}main{padding:22px 26px 30px 118px}header{padding-left:118px}.brand{position:fixed;left:14px;top:14px;z-index:11}.cards{grid-template-columns:repeat(3,1fr)}.two{grid-template-columns:1fr 1fr}.toasts{bottom:20px}}
 </style></head><body>
 
-<div id="loginScreen" class="admin-shell"><div class="login-wrap card">
-<div class="brand">DAI <span>STUDIO</span></div><p class="muted">Secure administration portal</p>
-<h1>Admin sign in</h1><p class="muted">Connect your Supabase project, then sign in with an existing administrator account.</p>
-<details open><summary style="cursor:pointer">Supabase connection</summary>
-<div class="field"><label for="sbUrl">Project URL</label><input id="sbUrl" placeholder="https://your-project.supabase.co" autocomplete="url"></div>
-<div class="field"><label for="sbKey">Publishable key / anon key</label><input id="sbKey" placeholder="Your public Supabase key" autocomplete="off"></div>
-<button id="saveConfig" class="secondary">Save connection</button></details>
-<div class="field"><label for="email">Administrator email</label><input id="email" type="email" placeholder="admin@example.com" autocomplete="email"></div>
-<button id="sendCode">Send verification code</button>
-<div id="otpArea" class="hidden"><div class="field"><label for="otp">Email verification code</label><input id="otp" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" maxlength="6"></div><button id="verifyCode">Verify and enter dashboard</button></div>
-<div id="notice" class="notice hidden" role="status"></div>
-<p class="footer-note">Only an account whose Supabase app_metadata has role = admin can access this dashboard. A newly registered account never becomes an administrator automatically.</p>
-</div></div>
+<div id="login"><div class="card"><div class="brand">DAI<span>ADMIN</span></div><h1>Admin sign in</h1><p class="m" style="margin:0 0 6px">Sign in with an administrator account.</p>
+<div id="s1"><label for="em">Administrator email</label><input id="em" type="email" placeholder="admin@example.com" autocomplete="email"><button id="sc" class="go w">Send verification code</button></div>
+<div id="s2" hidden><label for="ot">Code sent to your email</label><input id="ot" inputmode="numeric" maxlength="8" placeholder="Verification code" autocomplete="one-time-code"><button id="vf" class="go w">Verify &amp; enter dashboard</button><button id="rs" class="gh w">Resend code</button></div>
+<div id="ln" class="note" hidden></div>
+<details id="cfg"><summary>Supabase connection</summary><label for="su">Project URL</label><input id="su" placeholder="https://your-project.supabase.co"><label for="sk">Publishable key</label><input id="sk" placeholder="sb_publishable_..." autocomplete="off"><button id="cs" class="w">Save connection</button></details>
+<p class="m" style="font-size:12px;margin-bottom:0">Only accounts with the admin role can enter. The server checks this on every request.</p></div></div>
 
-<div id="dashboard" class="admin-shell hidden">
-<div class="topbar"><div><div class="brand">DAI <span>STUDIO</span></div><div class="muted">Administration console</div></div>
-<div class="toolbar"><span id="signedIn" class="status"></span><button id="refresh" class="secondary">↻ Refresh</button><button id="signOut" class="secondary">Sign out</button></div></div>
-<div class="page-head"><div><h1>Admin Dashboard</h1><p class="muted">Manage accounts, plans, providers and activity.</p></div></div>
-<div id="adminStatus" class="notice">Connecting to the secure admin backend…</div>
+<div id="app" hidden>
+<header><div class="brand">DAI<span>ADMIN</span></div><div class="row"><span id="me" class="m" style="font-size:12px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span><button id="rf" class="sm">↻</button><a href="../"><button class="sm gh">App</button></a><button id="so" class="sm gh">Sign out</button></div></header>
+<main>
+<div id="st" class="note">Loading…</div>
 
-<div class="grid cards">
-<div class="card"><div class="metric-label">Registered users</div><div class="metric-value" id="usersMetric">—</div><small>All platform accounts</small></div>
-<div class="card"><div class="metric-label">AI requests</div><div class="metric-value" id="requestsMetric">—</div><small>Recorded backend usage</small></div>
-<div class="card"><div class="metric-label">Estimated usage cost</div><div class="metric-value" id="costMetric">—</div><small>Based on usage records</small></div>
-<div class="card"><div class="metric-label">Active subscriptions</div><div class="metric-value" id="subsMetric">—</div><small>Active subscription records</small></div>
-<div class="card"><div class="metric-label">AI providers online</div><div class="metric-value" id="providersMetric">—</div><small>Configured provider status</small></div>
-<div class="card"><div class="metric-label">Errors / alerts</div><div class="metric-value" id="errorsMetric">—</div><small>Failed usage records</small></div>
-</div>
+<section data-p="overview"><h1>Overview</h1><p class="m" style="margin:0">How DAI Studio is doing.</p>
+<div class="cards"><div class="card"><div class="k">Users</div><div class="v" id="m1">—</div></div><div class="card"><div class="k">AI requests</div><div class="v" id="m2">—</div></div><div class="card"><div class="k">Estimated cost</div><div class="v" id="m3">—</div></div><div class="card"><div class="k">Subscriptions</div><div class="v" id="m4">—</div></div><div class="card"><div class="k">Providers online</div><div class="v" id="m5">—</div></div><div class="card"><div class="k">Errors</div><div class="v" id="m6">—</div></div></div>
+<div class="gr two"><div class="card"><h3>Usage, last 14 days</h3><p class="m" style="margin:0 0 8px;font-size:12px">Requests per day. Failed attempts show in red.</p><div id="ch"><div class="em">No data yet.</div></div></div>
+<div class="card"><h3>Recent activity</h3><div id="ra"><div class="em">No activity yet.</div></div></div></div></section>
 
-<div class="card" style="margin-top:16px"><h2>Usage — last 14 days</h2><p class="muted small" style="margin:0 0 8px">Requests per day, with failed requests in red.</p>
-<div id="usageChart"><div class="empty">No usage data loaded.</div></div></div>
+<section data-p="users" hidden><div class="row sb"><div><h1>Users</h1><p class="m" style="margin:0">Search, suspend and manage roles.</p></div><button id="ex" class="gh">Export CSV</button></div>
+<div class="row" style="margin:14px 0"><input id="uq" placeholder="Search email or ID" style="flex:2;min-width:150px"><select id="uf" style="flex:1;min-width:110px"><option value="all">All</option><option value="active">Active</option><option value="suspended">Suspended</option><option value="admin">Admins</option></select></div>
+<div id="ut" class="tw"><div class="em">No users loaded.</div></div></section>
 
-<div class="card" style="margin-top:16px">
-<div class="page-head" style="margin-top:0"><div><h2>Users & access</h2><p class="muted">Search, suspend and manage roles.</p></div>
-<div class="toolbar"><input id="userQuery" placeholder="Search email or user ID"><select id="userFilter"><option value="all">All</option><option value="active">Active</option><option value="suspended">Suspended</option><option value="admin">Admins</option></select><button id="searchUsers">Search</button><button id="exportUsers" class="secondary">Export CSV</button></div></div>
-<div id="usersTable" class="table-wrap"><div class="empty">User records will appear after the backend is connected.</div></div></div>
+<section data-p="plans" hidden><h1>Plans</h1><p class="m" style="margin:0">Subscription tiers for your users.</p>
+<div class="gr two" style="margin-top:14px"><div class="card"><h3>All plans</h3><div id="pl"><div class="em">No plans yet.</div></div></div>
+<div class="card"><h3>Create a plan</h3><label for="pn">Name</label><input id="pn" placeholder="e.g. Pro"><label for="pp">Monthly price (NGN)</label><input id="pp" type="number" min="0" placeholder="5000"><label for="pr">Monthly AI requests</label><input id="pr" type="number" min="0" step="1" placeholder="1000"><button id="ps" class="go w">Save plan</button></div></div></section>
 
-<div class="grid two" style="margin-top:16px">
-<div class="card"><h2>AI provider status</h2><p class="muted">Shows configured provider status. It does not test API keys.</p><div id="modelsList"><div class="empty">No provider data loaded.</div></div><button id="refreshModels" class="secondary" style="margin-top:10px">Refresh providers</button></div>
-<div class="card"><h2>Subscription plans</h2><div id="plansList"><div class="empty">No plans loaded.</div></div>
-<h3>Create a plan</h3>
-<div class="field"><label for="planName">Plan name</label><input id="planName" placeholder="e.g. Pro"></div>
-<div class="grid two"><div class="field"><label for="planPrice">Monthly price (NGN)</label><input id="planPrice" type="number" min="0" placeholder="5000"></div><div class="field"><label for="planLimit">Monthly AI requests</label><input id="planLimit" type="number" min="0" step="1" placeholder="1000"></div></div>
-<button id="savePlan">Save plan</button></div></div>
+<section data-p="providers" hidden><div class="row sb"><div><h1>AI providers</h1><p class="m" style="margin:0">Configured status. Keys are not tested here.</p></div><button id="rm" class="gh">Refresh</button></div><div class="card" style="margin-top:14px" id="mo"><div class="em">No providers loaded.</div></div></section>
 
-<div class="card" style="margin-top:16px">
-<div class="page-head" style="margin-top:0"><div><h2>Recent activity & audit logs</h2></div><div class="toolbar"><input id="logQuery" placeholder="Filter activity…"></div></div>
-<div id="logsList"><div class="empty">No activity loaded.</div></div></div>
-<p class="footer-note">Security: this page checks the admin claim for convenience, but the Edge Function independently verifies it on every request. Never place the Supabase service-role key in this file.</p>
-</div>
-
-<div id="modalRoot"></div><div id="toasts" class="toasts"></div>
-
+<section data-p="activity" hidden><h1>Activity</h1><p class="m" style="margin:0">Admin actions and audit log.</p><input id="lq" placeholder="Filter activity…" style="margin:14px 0"><div class="card" id="lg"><div class="em">No activity loaded.</div></div></section>
+</main>
+<nav><button class="nb" data-v="overview"><i>◈</i>Overview</button><button class="nb" data-v="users"><i>👥</i>Users</button><button class="nb" data-v="plans"><i>▣</i>Plans</button><button class="nb" data-v="providers"><i>✧</i>Providers</button><button class="nb" data-v="activity"><i>≡</i>Activity</button></nav></div>
+<div id="mr"></div><div id="toasts" class="toasts"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const $=id=>document.getElementById(id);
-let client=null,activeUser=null,usersCache=[],plansCache=[],logsCache=[];
-function readConfig(){return {url:$('sbUrl').value.trim().replace(/\/$/,''),key:$('sbKey').value.trim()}}
-function notify(m,e=false){const el=$('notice');el.textContent=m;el.classList.remove('hidden','error');if(e)el.classList.add('error')}
-function status(m,e=false){const el=$('adminStatus');el.textContent=m;el.classList.remove('error');if(e)el.classList.add('error')}
-function toast(m,e=false){const t=document.createElement('div');t.className='toast'+(e?' error':'');t.textContent=m;$('toasts').appendChild(t);setTimeout(()=>t.remove(),e?5000:2800)}
-function esc(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function initClient(){const c=readConfig();if(!c.url||!c.key)throw Error('Enter your Supabase project URL and public key first.');if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(c.url))throw Error('Enter a valid Supabase URL ending in .supabase.co.');if(!window.supabase?.createClient)throw Error('Supabase library did not load. Check your internet connection.');client=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});localStorage.setItem('daiStudioAdminConfig',JSON.stringify(c));return client}
-function isAdmin(u){return u?.app_metadata?.role==='admin'||(Array.isArray(u?.app_metadata?.roles)&&u.app_metadata.roles.includes('admin'))}
-async function api(action,body=null){
- const {data,error}=await client.auth.getSession();if(error)throw error;
- const token=data?.session?.access_token;if(!token)throw Error('Your sign-in session has expired. Sign in again.');
- const c=readConfig();
- const res=await fetch(`${c.url}//functions/v1/super-action?action=?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});
- let d={};try{d=await res.json()}catch{}
- if(!res.ok)throw Error(d.error||`Admin backend returned HTTP ${res.status}.`);return d}
-function pillClass(s){s=String(s||'').toLowerCase();return ['active','online','ok','recorded','admin'].includes(s)?'good':['suspended','error','failed','offline','inactive'].includes(s)?'bad':''}
-
-/* ---------- Renderers ---------- */
-function renderUsers(){
- const q=$('userQuery').value.trim().toLowerCase(),f=$('userFilter').value;
- let u=usersCache.filter(x=>(!q||(x.email||'').toLowerCase().includes(q)||(x.id||'').toLowerCase().includes(q)));
- if(f==='active')u=u.filter(x=>x.status!=='Suspended');
- if(f==='suspended')u=u.filter(x=>x.status==='Suspended');
- if(f==='admin')u=u.filter(x=>x.role==='admin');
- if(!u.length)return $('usersTable').innerHTML='<div class="empty">No matching users.</div>';
- $('usersTable').innerHTML=`<table><thead><tr><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody>${u.map(x=>{const me=x.id===activeUser?.id;const susp=x.status==='Suspended';return `<tr><td>${esc(x.email||'—')}<br><small>${esc(x.id||'')}</small></td><td><span class="pill ${x.role==='admin'?'good':''}">${esc(x.role||'user')}</span></td><td><span class="pill ${pillClass(x.status)}">${esc(x.status||'Unknown')}</span></td><td>${esc(x.created_at?new Date(x.created_at).toLocaleDateString():'—')}</td><td>${me?'<small>You</small>':`<div class="actions"><button class="sm ${susp?'secondary':'danger'}" data-act="${susp?'unsuspend_user':'suspend_user'}" data-id="${esc(x.id)}" data-email="${esc(x.email)}">${susp?'Unsuspend':'Suspend'}</button><button class="sm secondary" data-act="set_role" data-role="${x.role==='admin'?'user':'admin'}" data-id="${esc(x.id)}" data-email="${esc(x.email)}">${x.role==='admin'?'Remove admin':'Make admin'}</button></div>`}</td></tr>`}).join('')}</tbody></table>`}
-function renderList(items,type){
- if(!items?.length)return `<div class="empty">No ${type} records returned.</div>`;
- return items.map(x=>{const title=x.name||x.provider||x.action||'Record';const details=x.model||x.description||(x.actor_email?`${x.actor_email} · ${x.created_at?new Date(x.created_at).toLocaleString():''}`:x.details?JSON.stringify(x.details):'');const st=x.status||'Recorded';return `<div class="list-row"><div><strong>${esc(title)}</strong><small>${esc(details)}</small></div><span class="pill ${pillClass(st)}">${esc(st)}</span></div>`}).join('')}
-function renderPlans(){
- if(!plansCache.length)return $('plansList').innerHTML='<div class="empty">No plans yet.</div>';
- $('plansList').innerHTML=plansCache.map(p=>`<div class="list-row"><div><strong>${esc(p.name)}</strong><small>₦${Number(p.monthly_price_ngn||0).toLocaleString()} / month · ${Number(p.monthly_requests||0).toLocaleString()} requests</small></div><div class="actions"><span class="pill ${p.active?'good':'bad'}">${p.active?'Active':'Inactive'}</span><button class="sm secondary" data-plan-edit="${esc(p.id)}">Edit</button><button class="sm secondary" data-plan-toggle="${esc(p.id)}">${p.active?'Disable':'Enable'}</button><button class="sm danger" data-plan-delete="${esc(p.id)}">Delete</button></div></div>`).join('')}
-function renderLogs(){
- const q=$('logQuery').value.trim().toLowerCase();
- const l=q?logsCache.filter(x=>JSON.stringify(x).toLowerCase().includes(q)):logsCache;
- $('logsList').innerHTML=renderList(l,'activity')}
-function renderChart(days){
- if(!days?.length)return $('usageChart').innerHTML='<div class="empty">No usage data returned.</div>';
- const W=560,H=170,pad=22,max=Math.max(1,...days.map(d=>d.requests||0)),bw=(W-pad*2)/days.length;
- const bars=days.map((d,i)=>{const x=pad+i*bw+bw*.15,w=bw*.7,h=Math.round(((d.requests||0)/max)*(H-50)),eh=Math.round(((d.errors||0)/max)*(H-50));const y=H-26-h;return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" fill="#5b8cff"><title>${esc(d.date)}: ${d.requests||0} requests, ${d.errors||0} errors</title></rect>${eh?`<rect x="${x}" y="${H-26-eh}" width="${w}" height="${eh}" rx="3" fill="#ff6b7a"/>`:''}${i%2===0?`<text x="${x+w/2}" y="${H-8}" font-size="9" fill="#a7b4c8" text-anchor="middle">${esc(String(d.date).slice(5))}</text>`:''}`}).join('');
- $('usageChart').innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Usage chart"><text x="${pad}" y="12" font-size="10" fill="#a7b4c8">Peak: ${max}</text>${bars}</svg><div class="legend"><span><i style="background:#5b8cff"></i>Requests</span><span><i style="background:#ff6b7a"></i>Errors</span></div>`}
-
-/* ---------- Loading ---------- */
-async function load(action='overview',query=''){
- status('Loading secure admin data…');
- try{
-  const d=await api(action,action==='users'?{query}:null);
-  if(action==='overview'){
-   const m=d.metrics||{};
-   $('usersMetric').textContent=m.registeredUsers??'—';$('requestsMetric').textContent=m.aiRequests??'—';
-   $('costMetric').textContent=m.estimatedCostNgn!=null?'₦'+Number(m.estimatedCostNgn).toLocaleString():'—';
-   $('subsMetric').textContent=m.activeSubscriptions??'—';$('providersMetric').textContent=m.providersOnline??'—';$('errorsMetric').textContent=m.errors??'—';
-   usersCache=d.users||[];renderUsers();
-   $('modelsList').innerHTML=renderList(d.models||[],'providers');
-   plansCache=d.plans||[];renderPlans();
-   logsCache=d.logs||[];renderLogs();
-  }else if(action==='users'){usersCache=d.users||[];renderUsers()}
-  else if(action==='models')$('modelsList').innerHTML=renderList(d.models||[],'providers');
-  else if(action==='plans'){plansCache=d.plans||[];renderPlans()}
-  else if(action==='logs'){logsCache=d.logs||[];renderLogs()}
-  else if(action==='usage')renderChart(d.days);
-  status(d.message||'Admin data refreshed.');
- }catch(e){status(e.message+' Check that the admin-dashboard Edge Function is deployed and the schema has been applied.',true)}
-}
+(()=>{'use strict';
+const $=s=>document.querySelector(s),CK='daiStudioAdminConfig',MAIN='davidAI_workspace_v2';
+let cl=null,me=null,U=[],P=[],L=[],cool=null,mail='';
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m,e){const t=document.createElement('div');t.className='toast'+(e?' er':'');t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),e?5000:2600)}
+function ln(m,e){const n=$('#ln');n.hidden=!m;n.textContent=m||'';n.className='note'+(e?' er':'')}
+function st(m,e){const n=$('#st');n.textContent=m;n.className='note'+(e?' er':'')}
+function cfg(){let c=null;try{c=JSON.parse(localStorage.getItem(CK)||'null')}catch(e){}if(!c||!c.url||!c.key){try{const s=JSON.parse(localStorage.getItem(MAIN)||'null');if(s&&s.settings&&s.settings.supabaseUrl&&s.settings.supabaseKey)c={url:s.settings.supabaseUrl,key:s.settings.supabaseKey}}catch(e){}}return c||{url:'',key:''}}
+function init(u,k){u=(u||'').trim().replace(/\/$/,'');k=(k||'').trim();if(!u||!k)throw Error('Enter your Supabase project URL and key first.');if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(u))throw Error('The URL must end in .supabase.co');if(!window.supabase)throw Error('Supabase library did not load. Check your internet.');cl=supabase.createClient(u,k,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});localStorage.setItem(CK,JSON.stringify({url:u,key:k}));return cl}
+const isAdmin=u=>u?.app_metadata?.role==='admin'||(Array.isArray(u?.app_metadata?.roles)&&u.app_metadata.roles.includes('admin'));
+async function api(action,body){const{data,error}=await cl.auth.getSession();if(error)throw error;const t=data?.session?.access_token;if(!t)throw Error('Session expired. Please sign in again.');const c=cfg();
+ const r=await fetch(`${c.url}/functions/v1/super-action?action=${encodeURIComponent(action)}`,{method:body?'POST':'GET',headers:{Authorization:'Bearer '+t,apikey:c.key,'Content-Type':'application/json'},...(body?{body:JSON.stringify({...body,action})}:{})});
+ let d={};try{d=await r.json()}catch(e){}if(!r.ok)throw Error(d.error||'Server error '+r.status);return d}
+const pc=s=>{s=String(s||'').toLowerCase();return['active','online','ok','recorded','admin'].includes(s)?'ok':['suspended','error','failed','offline','inactive'].includes(s)?'bad':''};
+/* auth */
+function step(n){$('#s1').hidden=n!==1;$('#s2').hidden=n!==2}
+function startCool(){let n=45;const b=$('#rs');b.disabled=true;clearInterval(cool);cool=setInterval(()=>{b.textContent=n>0?'Resend code ('+n--+'s)':'Resend code';if(n<0){b.disabled=false;clearInterval(cool)}},1000)}
+async function send(re){const e=re?mail:$('#em').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return ln('Enter a valid email.',1);
+ try{$('#sc').disabled=true;if(!cl){const c=cfg();init(c.url,c.key)}const{error}=await cl.auth.signInWithOtp({email:e,options:{shouldCreateUser:false}});if(error)throw error;mail=e;step(2);ln('If this email belongs to an admin account, a code is on its way. Check spam too.');startCool()}catch(x){ln(x.message,1)}$('#sc').disabled=false}
+async function verify(){const t=$('#ot').value.trim();if(!/^\d{6,8}$/.test(t))return ln('Enter the code from your email.',1);
+ try{if(!cl){const c=cfg();init(c.url,c.key)}const{data,error}=await cl.auth.verifyOtp({email:mail,token:t,type:'email'});if(error)throw error;enter(data.user)}catch(x){ln(x.message,1)}}
+function enter(u){if(!isAdmin(u)){ln('This account is not an administrator. Ask the owner to set role = admin, then sign in again.',1);step(1);return}
+ me=u;$('#login').hidden=true;$('#app').hidden=false;$('#me').textContent=u.email||'Admin';show('overview');loadAll()}
+async function out(){try{await cl?.auth.signOut()}catch(e){}me=null;$('#app').hidden=true;$('#login').hidden=false;step(1);ln('Signed out.')}
+/* views */
+function show(v){document.querySelectorAll('[data-p]').forEach(s=>s.hidden=s.dataset.p!==v);document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on',b.dataset.v===v));scrollTo(0,0)}
+function rUsers(){const q=$('#uq').value.trim().toLowerCase(),f=$('#uf').value;let u=U.filter(x=>!q||(x.email||'').toLowerCase().includes(q)||(x.id||'').toLowerCase().includes(q));
+ if(f==='active')u=u.filter(x=>x.status!=='Suspended');if(f==='suspended')u=u.filter(x=>x.status==='Suspended');if(f==='admin')u=u.filter(x=>x.role==='admin');
+ if(!u.length){$('#ut').innerHTML='<div class="em">No matching users.</div>';return}
+ $('#ut').innerHTML=`<table><thead><tr><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead><tbody>${u.map(x=>{const mine=x.id===me?.id,s=x.status==='Suspended';return`<tr><td>${esc(x.email||'—')}<br><small class="m">${esc(x.id)}</small></td><td><span class="pill ${x.role==='admin'?'ok':''}">${esc(x.role||'user')}</span></td><td><span class="pill ${pc(x.status)}">${esc(x.status||'Unknown')}</span></td><td>${esc(x.created_at?new Date(x.created_at).toLocaleDateString():'—')}</td><td>${mine?'<small class="m">You</small>':`<div class="row"><button class="sm ${s?'':'dg'}" data-a="${s?'unsuspend_user':'suspend_user'}" data-id="${esc(x.id)}" data-e="${esc(x.email)}">${s?'Unsuspend':'Suspend'}</button><button class="sm" data-a="set_role" data-r="${x.role==='admin'?'user':'admin'}" data-id="${esc(x.id)}" data-e="${esc(x.email)}">${x.role==='admin'?'Remove admin':'Make admin'}</button></div>`}</td></tr>`}).join('')}</tbody></table>`}
+function rList(a,t){if(!a?.length)return`<div class="em">No ${t} yet.</div>`;return a.map(x=>{const ti=x.name||x.provider||x.action||'Record',d=x.model||x.description||(x.actor_email?`${x.actor_email} · ${x.created_at?new Date(x.created_at).toLocaleString():''}`:x.details?JSON.stringify(x.details):''),s=x.status||'Recorded';return`<div class="li"><div><b>${esc(ti)}</b><small>${esc(d)}</small></div><span class="pill ${pc(s)}">${esc(s)}</span></div>`}).join('')}
+function rPlans(){$('#pl').innerHTML=P.length?P.map(p=>`<div class="li"><div><b>${esc(p.name)}</b><small>₦${Number(p.monthly_price_ngn||0).toLocaleString()} / month · ${Number(p.monthly_requests||0).toLocaleString()} requests</small></div><div class="row"><span class="pill ${p.active?'ok':'bad'}">${p.active?'Active':'Off'}</span><button class="sm" data-pe="${esc(p.id)}">Edit</button><button class="sm" data-pt="${esc(p.id)}">${p.active?'Disable':'Enable'}</button><button class="sm dg" data-pd="${esc(p.id)}">Delete</button></div></div>`).join(''):'<div class="em">No plans yet.</div>'}
+function rLogs(){const q=$('#lq').value.trim().toLowerCase();$('#lg').innerHTML=rList(q?L.filter(x=>JSON.stringify(x).toLowerCase().includes(q)):L,'activity')}
+function chart(days){if(!days?.length){$('#ch').innerHTML='<div class="em">No usage data yet.</div>';return}
+ const W=560,H=170,pad=22,mx=Math.max(1,...days.map(d=>d.requests||0)),bw=(W-pad*2)/days.length;
+ const bars=days.map((d,i)=>{const x=pad+i*bw+bw*.15,w=bw*.7,h=Math.round(((d.requests||0)/mx)*(H-50)),eh=Math.round(((d.errors||0)/mx)*(H-50));return`<rect x="${x}" y="${H-26-h}" width="${w}" height="${h}" rx="3" fill="#5b8cff"><title>${esc(d.date)}: ${d.requests||0} requests, ${d.errors||0} errors</title></rect>${eh?`<rect x="${x}" y="${H-26-eh}" width="${w}" height="${eh}" rx="3" fill="#ff6b7a"/>`:''}${i%2===0?`<text x="${x+w/2}" y="${H-8}" font-size="9" fill="#a7b4c8" text-anchor="middle">${esc(String(d.date).slice(5))}</text>`:''}`}).join('');
+ $('#ch').innerHTML=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Usage chart"><text x="${pad}" y="12" font-size="10" fill="#a7b4c8">Peak: ${mx}</text>${bars}</svg><div class="lg"><span><i style="background:#5b8cff"></i>Requests</span><span><i style="background:#ff6b7a"></i>Errors</span></div>`}
+async function load(a,q){st('Loading…');try{const d=await api(a,a==='users'?{query:q||''}:null);
+ if(a==='overview'){const m=d.metrics||{};$('#m1').textContent=m.registeredUsers??'—';$('#m2').textContent=m.aiRequests??'—';$('#m3').textContent=m.estimatedCostNgn!=null?'₦'+Number(m.estimatedCostNgn).toLocaleString():'—';$('#m4').textContent=m.activeSubscriptions??'—';$('#m5').textContent=m.providersOnline??'—';$('#m6').textContent=m.errors??'—';
+  U=d.users||[];rUsers();$('#mo').innerHTML=rList(d.models||[],'providers');P=d.plans||[];rPlans();L=d.logs||[];rLogs();$('#ra').innerHTML=rList(L.slice(0,5),'activity')}
+ else if(a==='users'){U=d.users||[];rUsers()}else if(a==='models')$('#mo').innerHTML=rList(d.models||[],'providers');else if(a==='plans'){P=d.plans||[];rPlans()}else if(a==='logs'){L=d.logs||[];rLogs()}else if(a==='usage')chart(d.days);
+ st(d.message||'Up to date.')}catch(e){st(e.message+' Check that the super-action function is deployed and the SQL was run.',1)}}
 async function loadAll(){await load('overview');await load('usage')}
-async function act(action,body,okMsg){
- try{const r=await api(action,body);toast(r.message||okMsg||'Done.');await loadAll()}catch(e){toast(e.message,true)}}
-
-/* ---------- Plan modal ---------- */
-function openPlanModal(p){
- $('modalRoot').innerHTML=`<div class="modal-backdrop"><div class="modal"><h3 style="margin-top:0">Edit plan</h3><div class="field"><label>Name</label><input id="mName" value="${esc(p.name)}"></div><div class="grid two"><div class="field"><label>Monthly price (NGN)</label><input id="mPrice" type="number" min="0" value="${Number(p.monthly_price_ngn||0)}"></div><div class="field"><label>Monthly requests</label><input id="mLimit" type="number" min="0" step="1" value="${Number(p.monthly_requests||0)}"></div></div><div class="toolbar"><button id="mSave">Save changes</button><button id="mCancel" class="ghost">Cancel</button></div></div></div>`;
- const close=()=>$('modalRoot').innerHTML='';
- $('mCancel').onclick=close;
- $('modalRoot').firstChild.addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop'))close()});
- $('mSave').onclick=async()=>{const name=$('mName').value.trim(),price=Number($('mPrice').value),limit=Number($('mLimit').value);
-  if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(limit)||limit<0)return toast('Enter a name, valid price and whole-number limit.',true);
-  close();await act('update_plan',{id:p.id,name,monthlyPriceNgn:price,monthlyRequests:limit,active:p.active},'Plan updated.')}}
-
-/* ---------- Events ---------- */
-$('saveConfig').onclick=()=>{try{initClient();notify('Supabase connection details saved on this device.')}catch(e){notify(e.message,true)}};
-$('sendCode').onclick=async()=>{const b=$('sendCode');b.disabled=true;try{initClient();const email=$('email').value.trim();if(!email)throw Error('Enter your administrator email.');const {error}=await client.auth.signInWithOtp({email,options:{shouldCreateUser:false}});if(error)throw error;$('otpArea').classList.remove('hidden');notify('If this email belongs to an account, check your inbox for the verification code.')}catch(e){notify(e.message,true)}b.disabled=false};
-$('verifyCode').onclick=async()=>{try{if(!client)initClient();const email=$('email').value.trim(),token=$('otp').value.trim();if(!/^\d{6}$/.test(token))throw Error('Enter the 6-digit code from your email.');const {data,error}=await client.auth.verifyOtp({email,token,type:'email'});if(error)throw error;await enter(data.user)}catch(e){notify(e.message,true)}};
-$('email').addEventListener('keydown',e=>{if(e.key==='Enter')$('sendCode').click()});
-$('otp').addEventListener('keydown',e=>{if(e.key==='Enter')$('verifyCode').click()});
-$('refresh').onclick=loadAll;
-$('searchUsers').onclick=renderUsers;$('userQuery').addEventListener('input',renderUsers);$('userFilter').onchange=renderUsers;
-$('logQuery').addEventListener('input',renderLogs);
-$('refreshModels').onclick=()=>load('models');
-$('exportUsers').onclick=()=>{if(!usersCache.length)return toast('No users to export.',true);const rows=[['email','id','role','status','joined'],...usersCache.map(u=>[u.email,u.id,u.role||'user',u.status,u.created_at])];const csv=rows.map(r=>r.map(v=>{let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return `"${s.replace(/"/g,'""')}"`}).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='dai-users.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
-$('usersTable').addEventListener('click',e=>{
- const b=e.target.closest('[data-act]');if(!b)return;
- const {act:a,id,email,role}=b.dataset;
- const msg=a==='suspend_user'?`Suspend ${email}? They will be unable to sign in.`:a==='unsuspend_user'?`Restore access for ${email}?`:role==='admin'?`Give ${email} administrator access?`:`Remove administrator access from ${email}?`;
- if(!confirm(msg))return;
- act(a,a==='set_role'?{userId:id,role}:{userId:id});
-});
-$('plansList').addEventListener('click',e=>{
- const ed=e.target.closest('[data-plan-edit]'),tg=e.target.closest('[data-plan-toggle]'),dl=e.target.closest('[data-plan-delete]');
- if(ed){const p=plansCache.find(x=>String(x.id)===ed.dataset.planEdit);if(p)openPlanModal(p)}
- if(tg){const p=plansCache.find(x=>String(x.id)===tg.dataset.planToggle);if(p)act('update_plan',{id:p.id,name:p.name,monthlyPriceNgn:p.monthly_price_ngn,monthlyRequests:p.monthly_requests,active:!p.active},'Plan updated.')}
- if(dl){const p=plansCache.find(x=>String(x.id)===dl.dataset.planDelete);if(p&&confirm(`Delete plan "${p.name}"? This cannot be undone.`))act('delete_plan',{id:p.id},'Plan deleted.')}
-});
-$('savePlan').onclick=async()=>{
- const name=$('planName').value.trim(),price=Number($('planPrice').value),limit=Number($('planLimit').value);
- if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(limit)||limit<0)return toast('Enter a plan name, valid non-negative price and whole-number request limit.',true);
- await act('save_plan',{name,monthlyPriceNgn:price,monthlyRequests:limit},'Plan created.');
- $('planName').value='';$('planPrice').value='';$('planLimit').value='';
-};
-$('signOut').onclick=async()=>{try{await client?.auth.signOut()}finally{activeUser=null;$('dashboard').classList.add('hidden');$('loginScreen').classList.remove('hidden');notify('Signed out.')}};
-
-async function enter(u){
- if(!isAdmin(u)){try{await client.auth.signOut()}catch{}throw Error('This account does not have the administrator role. Ask the project owner to set app_metadata.role = admin securely, then sign in again.')}
- activeUser=u;$('loginScreen').classList.add('hidden');$('dashboard').classList.remove('hidden');$('signedIn').textContent=u.email||'Administrator';loadAll()}
-try{const c=JSON.parse(localStorage.getItem('daiStudioAdminConfig')||'null');if(c){$('sbUrl').value=c.url||'';$('sbKey').value=c.key||''}}catch{}
-try{if($('sbUrl').value&&$('sbKey').value){initClient();client.auth.getSession().then(({data})=>{if(data?.session?.user)enter(data.session.user).catch(e=>notify(e.message,true))})}}catch{}
+async function act(a,b,ok){try{const r=await api(a,b);toast(r.message||ok||'Done.');await loadAll()}catch(e){toast(e.message,1)}}
+function editPlan(p){$('#mr').innerHTML=`<div class="mb"><div class="md"><h3 style="margin-top:0">Edit plan</h3><label>Name</label><input id="en" value="${esc(p.name)}"><label>Monthly price (NGN)</label><input id="ep" type="number" min="0" value="${Number(p.monthly_price_ngn||0)}"><label>Monthly requests</label><input id="er" type="number" min="0" step="1" value="${Number(p.monthly_requests||0)}"><div class="row" style="margin-top:14px"><button id="eS" class="go">Save changes</button><button id="eC" class="gh">Cancel</button></div></div></div>`;
+ const close=()=>$('#mr').innerHTML='';$('#eC').onclick=close;$('.mb').onclick=e=>{if(e.target.classList.contains('mb'))close()};
+ $('#eS').onclick=async()=>{const n=$('#en').value.trim(),pr=Number($('#ep').value),r=Number($('#er').value);if(!n||!Number.isFinite(pr)||pr<0||!Number.isInteger(r)||r<0)return toast('Enter a name, valid price and whole-number limit.',1);close();await act('update_plan',{id:p.id,name:n,monthlyPriceNgn:pr,monthlyRequests:r,active:p.active},'Plan updated.')}}
+/* events */
+document.querySelectorAll('.nb').forEach(b=>b.onclick=()=>show(b.dataset.v));
+$('#sc').onclick=()=>send(false);$('#rs').onclick=()=>send(true);$('#vf').onclick=verify;
+$('#em').onkeydown=e=>{if(e.key==='Enter')send(false)};$('#ot').onkeydown=e=>{if(e.key==='Enter')verify()};
+$('#cs').onclick=()=>{try{init($('#su').value,$('#sk').value);ln('Connection saved.')}catch(e){ln(e.message,1)}};
+$('#rf').onclick=loadAll;$('#so').onclick=out;$('#rm').onclick=()=>load('models');
+$('#uq').oninput=rUsers;$('#uf').onchange=rUsers;$('#lq').oninput=rLogs;
+$('#ex').onclick=()=>{if(!U.length)return toast('No users to export.',1);const rows=[['email','id','role','status','joined'],...U.map(u=>[u.email,u.id,u.role||'user',u.status,u.created_at])];const csv=rows.map(r=>r.map(v=>{let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return`"${s.replace(/"/g,'""')}"`}).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='dai-users.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)};
+$('#ut').onclick=e=>{const b=e.target.closest('[data-a]');if(!b)return;const{a,id,e:em,r}=b.dataset;const msg=a==='suspend_user'?`Suspend ${em}? They will not be able to sign in.`:a==='unsuspend_user'?`Restore access for ${em}?`:r==='admin'?`Give ${em} administrator access?`:`Remove administrator access from ${em}?`;if(confirm(msg))act(a,a==='set_role'?{userId:id,role:r}:{userId:id})};
+$('#pl').onclick=e=>{const ed=e.target.closest('[data-pe]'),tg=e.target.closest('[data-pt]'),dl=e.target.closest('[data-pd]');
+ if(ed){const p=P.find(x=>String(x.id)===ed.dataset.pe);if(p)editPlan(p)}
+ if(tg){const p=P.find(x=>String(x.id)===tg.dataset.pt);if(p)act('update_plan',{id:p.id,name:p.name,monthlyPriceNgn:p.monthly_price_ngn,monthlyRequests:p.monthly_requests,active:!p.active},'Plan updated.')}
+ if(dl){const p=P.find(x=>String(x.id)===dl.dataset.pd);if(p&&confirm(`Delete plan "${p.name}"? This cannot be undone.`))act('delete_plan',{id:p.id},'Plan deleted.')}};
+$('#ps').onclick=async()=>{const n=$('#pn').value.trim(),pr=Number($('#pp').value),r=Number($('#pr').value);if(!n||!Number.isFinite(pr)||pr<0||!Number.isInteger(r)||r<0)return toast('Enter a name, valid price and whole-number limit.',1);await act('save_plan',{name:n,monthlyPriceNgn:pr,monthlyRequests:r},'Plan created.');$('#pn').value=$('#pp').value=$('#pr').value=''};
+/* start */
+const c0=cfg();$('#su').value=c0.url||'';$('#sk').value=c0.key||'';
+if(c0.url&&c0.key){try{init(c0.url,c0.key);cl.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&me){me=null;$('#app').hidden=true;$('#login').hidden=false}});cl.auth.getSession().then(({data})=>{if(data?.session?.user)enter(data.session.user)})}catch(e){ln(e.message,1)}}else $('#cfg').open=true;
+})();
 </script></body></html>
