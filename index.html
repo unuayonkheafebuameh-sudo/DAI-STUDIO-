@@ -1,366 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d18">
-<title>DAI Studio — All-in-One AI Platform</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d18"><title>DAI Studio — Build with AI</title>
 <style>
-:root{--bg:#080d18;--panel:#101827;--panel2:#151f31;--line:#27344a;--text:#f4f7fb;--muted:#a7b4c8;--blue:#5b8cff;--cyan:#4de0d0;--danger:#ff6b7a;--radius:18px}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#132748 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0;border-radius:11px;padding:11px 15px;font-weight:700;color:white;background:var(--blue)}button:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#202d42;border:1px solid var(--line)}.ghost{background:transparent;border:1px solid var(--line)}.danger{background:#572531}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.brand{font-size:25px;font-weight:900;letter-spacing:-.8px}.brand span{color:var(--cyan)}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);background:#111d30;border-radius:999px;padding:5px 10px;color:#c8d7ec;font-size:12px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-size:13px;color:#cbd6e6}.field input,.field textarea,.field select,input,textarea,select{width:100%;color:var(--text);background:#09111f;border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}.field input:focus,.field textarea:focus,input:focus,textarea:focus,select:focus{border-color:var(--blue)}textarea{min-height:120px;resize:vertical}.auth-shell{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch}.auth-intro{padding:8vw;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(38,80,154,.3),rgba(8,13,24,.1))}.auth-intro h1{font-size:clamp(38px,5vw,68px);line-height:1.02;letter-spacing:-2px;margin:28px 0 18px}.gradient{background:linear-gradient(90deg,#74a5ff,#4de0d0);-webkit-background-clip:text;background-clip:text;color:transparent}.auth-card-wrap{display:flex;align-items:center;justify-content:center;padding:28px}.auth-card{width:min(470px,100%);background:rgba(16,24,39,.96);border:1px solid var(--line);border-radius:24px;padding:clamp(22px,4vw,38px);box-shadow:0 25px 90px #0005}.auth-card h2{margin:0 0 5px;font-size:27px}.oauth-list{display:grid;gap:9px;margin:20px 0}.oauth-btn{width:100%;background:#101a2a;border:1px solid #34435a;display:flex;align-items:center;justify-content:center;gap:10px}.oauth-btn:hover,.secondary:hover,.ghost:hover{filter:brightness(1.15)}.provider-icon{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:#243650;font-size:12px;font-weight:900}.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin:18px 0}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}.auth-switch{display:flex;gap:8px;margin:18px 0 4px}.auth-switch button{flex:1}.notice{padding:11px 13px;border-radius:10px;background:#142c34;border:1px solid #245d60;color:#b8fff1;margin:12px 0;font-size:13px}.error{background:#351a27;border-color:#713044;color:#ffc5cf}.app{min-height:100vh;display:grid;grid-template-columns:250px 1fr}.sidebar{padding:22px 15px;border-right:1px solid var(--line);background:#0a111e;position:sticky;top:0;height:100vh;overflow:auto}.side-brand{padding:5px 10px 25px}.nav-label{color:#75869e;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:12px 10px 6px}.nav-btn{display:flex;width:100%;gap:10px;align-items:center;text-align:left;color:#b9c7da;background:transparent;padding:11px 12px;margin:2px 0;border:1px solid transparent}.nav-btn.active,.nav-btn:hover{background:#17253b;border-color:#2a3d5a;color:white}.main{min-width:0}.topbar{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 26px;gap:14px;background:#080d18dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}.topbar-right{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:#263f66;font-weight:900}.content{padding:28px;max-width:1500px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:22px}.page-head h1{margin:0;font-size:30px;letter-spacing:-.8px}.page-head p{color:var(--muted);margin:5px 0}.grid{display:grid;gap:16px}.grid.cards{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:linear-gradient(145deg,#121d2e,#0f1725);border:1px solid var(--line);border-radius:var(--radius);padding:20px;min-width:0}.card h3{margin:0 0 8px}.card p{color:var(--muted)}.card-icon{font-size:24px;margin-bottom:12px}.stat{font-size:29px;font-weight:850;margin:7px 0}.tool-card{cursor:pointer;transition:.15s}.tool-card:hover{transform:translateY(-2px);border-color:#5377b5}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.editor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.editor-grid textarea{height:300px;font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}.preview{width:100%;height:420px;background:white;border:1px solid var(--line);border-radius:12px}.list{display:grid;gap:10px}.list-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px;background:#0b1422;border:1px solid var(--line);border-radius:12px}.list-row strong{display:block}.list-row small{color:var(--muted)}.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #34445c;border-radius:12px}.footer-note{color:#71829b;font-size:12px;margin-top:20px}.status{font-size:12px;color:var(--cyan)}.mobile-menu{display:none}.modal-backdrop{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:20px;z-index:20}.modal{width:min(500px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}.user-email{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:12px}
-/* NEW: toasts, chat, misc */
-.toasts{position:fixed;bottom:18px;right:18px;left:18px;display:grid;gap:8px;justify-items:end;z-index:50;pointer-events:none}.toast{background:#142c34;border:1px solid #245d60;color:#b8fff1;padding:11px 14px;border-radius:12px;font-size:13px;max-width:340px;box-shadow:0 10px 40px #0007;animation:pop .2s}.toast.error{background:#351a27;border-color:#713044;color:#ffc5cf}@keyframes pop{from{opacity:0;transform:translateY(8px)}}
-.chat{height:52vh;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px}.msg{max-width:86%;padding:10px 14px;border-radius:16px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.user{align-self:flex-end;background:var(--blue);border-bottom-right-radius:4px}.msg.assistant{align-self:flex-start;background:#0b1422;border:1px solid var(--line);border-bottom-left-radius:4px}.msg.typing{opacity:.7;font-style:italic}.chat-input{display:flex;gap:8px;margin-top:12px;align-items:flex-end}.chat-input textarea{min-height:48px;height:48px}.search{max-width:320px}.tag{font-size:11px;padding:2px 8px;border-radius:999px;background:#20324c;color:#c8d7ec;margin-left:6px}.active-proj{color:var(--cyan);font-size:13px;margin:4px 0}
-@media(max-width:900px){.auth-shell{grid-template-columns:1fr}.auth-intro{padding:35px 26px 10px}.auth-intro h1{font-size:42px;margin:18px 0 10px}.auth-intro .intro-points{display:none}.auth-card-wrap{padding:18px}.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:10;left:-270px;width:250px;transition:left .2s;box-shadow:20px 0 70px #0007}.sidebar.open{left:0}.mobile-menu{display:inline-block}.content{padding:20px 15px}.topbar{padding:0 15px}.grid.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-grid{grid-template-columns:1fr}.editor-grid textarea{height:180px}}@media(max-width:560px){.grid.cards,.grid.two{grid-template-columns:1fr}.page-head{display:block}.page-head .toolbar{margin-top:12px}.topbar .user-email{display:none}.auth-intro h1{font-size:36px}.auth-card{padding:22px}.topbar{height:62px}.toasts{justify-items:stretch}.toast{max-width:none}}
-</style>
-</head>
-<body>
-<div id="authScreen" class="auth-shell">
-  <section class="auth-intro">
-    <div class="brand">DAI<span> STUDIO</span></div>
-    <span class="pill" style="width:max-content;margin-top:28px">YOUR ALL-IN-ONE AI WORKSPACE</span>
-    <h1>Think. Create.<br><span class="gradient">Build without limits.</span></h1>
-    <p class="muted" style="max-width:490px;font-size:17px">One workspace for AI assistance, coding, creative tools and your projects.</p>
-    <div class="intro-points muted" style="display:grid;gap:12px;margin-top:25px">
-      <div>✓ Chat with your AI assistant</div><div>✓ Build and preview websites</div><div>✓ Organize your projects</div>
-    </div>
-  </section>
-  <section class="auth-card-wrap">
-    <div class="auth-card">
-      <div class="brand" style="font-size:20px">DAI<span> STUDIO</span></div>
-      <h2 id="authTitle" style="margin-top:18px">Welcome to DAI Studio</h2>
-      <p id="authSubtitle" class="muted">Choose how you want to continue.</p>
-      <div id="authMessage" class="notice hidden"></div>
-      <div id="oauthArea" class="oauth-list">
-        <button class="oauth-btn" data-provider="google"><span class="provider-icon">G</span> Continue with Google</button>
-        <button class="oauth-btn" data-provider="github"><span class="provider-icon">GH</span> Continue with GitHub</button>
-        <button class="oauth-btn" data-provider="gitlab"><span class="provider-icon">GL</span> Continue with GitLab</button>
-        <button class="oauth-btn" data-provider="bitbucket"><span class="provider-icon">BB</span> Continue with Bitbucket</button>
-      </div>
-      <div class="divider" id="emailDivider">OR CONTINUE WITH EMAIL</div>
-      <div id="emailForm">
-        <div class="field"><label for="emailInput">Email address</label><input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email"></div>
-        <div class="field" id="passwordField"><label for="passwordInput">Password <span class="small muted">(leave empty to get a login code by email)</span></label><input id="passwordInput" type="password" placeholder="Your password" autocomplete="current-password"></div>
-        <button id="emailAction" style="width:100%">Continue with Email</button>
-      </div>
-      <div id="otpForm" class="hidden">
-        <p class="muted">Enter the 6-digit verification code sent to your email.</p>
-        <div class="field"><label for="otpInput">Verification code</label><input id="otpInput" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000"></div>
-        <button id="verifyOtp" style="width:100%">Verify email</button>
-        <button id="resendOtp" class="ghost" style="width:100%;margin-top:9px">Resend code</button>
-      </div>
-      <div class="auth-switch"><button id="showSignup" class="secondary">Create account</button><button id="showLogin" class="ghost">Log in</button></div>
-      <p class="small muted">By continuing, you agree to use DAI Studio responsibly. Your account is protected by authentication services.</p>
-      <details style="margin-top:14px;border-top:1px solid var(--line);padding-top:14px">
-        <summary style="cursor:pointer;color:#b9c7da;font-size:13px">Connect Supabase authentication</summary>
-        <p class="small muted">Enter your Supabase project URL and public publishable/anon key. Never enter a secret or service-role key.</p>
-        <div class="field"><label for="authSupabaseUrl">Supabase project URL</label><input id="authSupabaseUrl" placeholder="https://your-project.supabase.co"></div>
-        <div class="field"><label for="authSupabaseKey">Publishable key / anon public key</label><input id="authSupabaseKey" placeholder="sb_publishable_..." autocomplete="off"></div>
-        <button id="saveAuthSupabase" class="secondary" style="width:100%">Save authentication setup</button>
-      </details>
-      <p class="footer-note">Google, GitHub, GitLab and Bitbucket sign-in also need to be enabled in Supabase Authentication settings.</p>
-    </div>
-  </section>
-</div>
-
-<div id="appScreen" class="app hidden">
-  <aside id="sidebar" class="sidebar">
-    <div class="side-brand"><div class="brand">DAI<span> STUDIO</span></div><div class="small muted">All-in-One AI Studio</div></div>
-    <div class="nav-label">Workspace</div>
-    <button class="nav-btn active" data-page="dashboard">⌂ <span>Dashboard</span></button>
-    <button class="nav-btn" data-page="assistant">✦ <span>AI Assistant</span></button>
-    <button class="nav-btn" data-page="projects">▣ <span>My Projects</span></button>
-    <button class="nav-btn" data-page="code">⌘ <span>Code Studio</span></button>
-    <div class="nav-label">Creative Studios</div>
-    <button class="nav-btn" data-page="image">▧ <span>AI Image Studio</span></button>
-    <button class="nav-btn" data-page="video">▶ <span>AI Video Studio</span></button>
-    <button class="nav-btn" data-page="writer">✎ <span>AI Writer</span></button>
-    <button class="nav-btn" data-page="voice">♫ <span>AI Voice Studio</span></button>
-    <div class="nav-label">Integrations</div>
-    <button class="nav-btn" data-page="github">⌥ <span>GitHub Import</span></button>
-    <button class="nav-btn" data-page="platforms">↗ <span>Other Platforms</span></button>
-    <button class="nav-btn" data-page="models">✧ <span>AI Models & Setup</span></button>
-    <button class="nav-btn" data-page="settings">⚙ <span>Settings</span></button>
-    <div class="nav-label">Account</div>
-    <button class="nav-btn" id="signOutSide">⇥ <span>Sign out</span></button>
-  </aside>
-  <main class="main">
-    <header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button id="mobileMenu" class="mobile-menu secondary">☰</button><div><strong id="topTitle">Dashboard</strong><div class="small muted">Your creative workspace</div></div></div><div class="topbar-right"><span class="pill">● <span id="connectionStatus" style="margin-left:5px">Local workspace</span></span><span id="userEmail" class="user-email"></span><div id="userAvatar" class="avatar">D</div></div></header>
-    <div id="pageContent" class="content"></div>
-  </main>
-</div>
-
-<div id="modalRoot"></div>
+:root{--bg:#080d18;--l:#27344a;--t:#f4f7fb;--m:#a7b4c8;--b:#5b8cff;--c:#4de0d0}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:radial-gradient(circle at 80% -10%,#1b3a73 0,transparent 40%),radial-gradient(circle at 0 110%,#0f4a55 0,transparent 35%),var(--bg);color:var(--t);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer;border:0;color:#fff;border-radius:12px;padding:11px 15px;font-weight:700;background:#202d42}
+button:disabled{opacity:.5;cursor:wait}
+input,textarea,select{width:100%;color:var(--t);background:#0a1220;border:1px solid var(--l);border-radius:12px;padding:12px;outline:none}
+input:focus,textarea:focus{border-color:var(--b)}textarea{resize:none;min-height:50px}
+.go{background:linear-gradient(135deg,#5b8cff,#4de0d0);color:#06101f}.w{width:100%;margin-top:10px}
+.ghost{background:transparent;border:1px solid var(--l)}.m{color:var(--m)}.g{background:linear-gradient(90deg,#8bb0ff,#4de0d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand{font-weight:900;font-size:21px;letter-spacing:-.5px}.brand span{color:var(--c);margin-left:4px}
+.card{background:#101827cc;border:1px solid var(--l);border-radius:20px;padding:18px;backdrop-filter:blur(10px)}
+.pill{display:inline-block;border:1px solid var(--l);background:#111d30;border-radius:99px;padding:5px 12px;font-size:12px;color:#c8d7ec}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.row select{flex:1;min-width:120px}
+label{font-size:13px;color:#cbd6e6;display:block;margin:10px 0 6px}
+/* auth */
+#auth{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;padding:30px max(20px,5vw)}
+#auth h1{font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-1.5px;margin:22px 0 12px}
+.seg{display:flex;gap:6px;background:#0a1220;padding:5px;border-radius:14px;margin-bottom:12px}.seg button{flex:1;background:none}.seg .on{background:#1d2c46}
+.am{padding:10px 12px;border-radius:10px;background:#142c34;border:1px solid #245d60;color:#b8fff1;font-size:13px}.am.er{background:#351a27;border-color:#713044;color:#ffc5cf}
+.lnk{background:none;color:var(--m);font-size:13px;width:100%;margin-top:6px}details{margin-top:14px;border-top:1px solid var(--l);padding-top:12px;font-size:13px}summary{cursor:pointer;color:#b9c7da}
+/* app */
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#080d18d9;backdrop-filter:blur(14px);border-bottom:1px solid var(--l)}
+.av{width:34px;height:34px;border-radius:50%;background:#263f66;display:grid;place-items:center;font-weight:900}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#0a111ef0;backdrop-filter:blur(14px);border-top:1px solid var(--l);z-index:9}
+.nb{flex:1;background:none;border-radius:0;padding:9px 2px;font-size:11px;color:var(--m);display:grid;gap:2px;justify-items:center}.nb.on{color:var(--c)}.nb i{font-style:normal;font-size:19px}
+main{padding:16px 14px 90px;max-width:1300px;margin:auto}
+h2{margin:6px 0 4px;font-size:26px;letter-spacing:-.6px}
+.hero{text-align:center;padding:30px 0}.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.04;letter-spacing:-2px;margin:18px 0 10px}
+.pbox{max-width:720px;margin:26px auto 0;text-align:left;background:#101827;border:1px solid #34507f;border-radius:22px;padding:14px;box-shadow:0 0 60px #5b8cff30}
+.pbox textarea{background:none;border:0;min-height:96px;font-size:16px}.pbox .row{justify-content:space-between}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{font-size:12px;padding:7px 11px;background:#17253b;border:1px solid var(--l);font-weight:500;color:#c8d7ec;border-radius:99px}
+.wsbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}.wsbar b{flex:1;min-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tabs{display:flex;background:#0a1220;border-radius:12px;padding:3px}.t{background:none;padding:7px 12px;font-size:13px;color:var(--m)}.t.on{background:#1d2c46;color:#fff}
+.ic{padding:8px 11px;background:#17253b;border:1px solid var(--l)}
+#ws{height:calc(100vh - 200px);min-height:460px}#ws>div{display:none;height:100%;flex-direction:column;border:1px solid var(--l);border-radius:18px;overflow:hidden;background:#0c1422}
+#ws[data-t=chat] #chatP,#ws[data-t=preview] #prevP,#ws[data-t=code] #codeP{display:flex}
+.msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}.msg{padding:9px 13px;border-radius:15px;max-width:90%;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--b)}.msg.a{align-self:flex-start;background:#131f33;border:1px solid var(--l)}.typing{opacity:.75;font-style:italic}
+.cin{display:flex;gap:8px;padding:10px;border-top:1px solid var(--l);align-items:flex-end}
+.dev{display:flex;gap:6px;padding:8px;border-bottom:1px solid var(--l);justify-content:center}
+.frame{flex:1;display:flex;justify-content:center;background:#05080f;overflow:auto}.frame iframe{width:100%;height:100%;border:0;background:#fff;transition:max-width .2s}
+#ce{flex:1;border:0;border-radius:0;font:12.5px/1.5 ui-monospace,Consolas,monospace;resize:none;background:#070c16}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:14px}.imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:14px}
+.imgs img{width:100%;border-radius:14px;display:block;background:#0a1220;min-height:160px}.pre{white-space:pre-wrap;line-height:1.6;margin-top:12px}
+.toasts{position:fixed;bottom:80px;left:14px;right:14px;display:grid;gap:8px;justify-items:center;z-index:50;pointer-events:none}
+.toast{background:#142c34;border:1px solid #245d60;color:#b8fff1;padding:10px 14px;border-radius:12px;font-size:13px;max-width:380px}.toast.er{background:#351a27;border-color:#713044;color:#ffc5cf}
+@media(min-width:900px){nav{top:0;right:auto;width:84px;flex-direction:column;border-top:0;border-right:1px solid var(--l);padding-top:64px}.nb{flex:none;padding:14px 0}main{padding:20px 24px 24px 108px}header{padding-left:108px}.brand{position:fixed;left:16px;top:14px}
+#ws{display:grid;grid-template-columns:380px 1fr;gap:12px}#chatP{display:flex!important}#ws[data-t=chat] #prevP{display:flex}#prevP,#codeP{grid-column:2;grid-row:1}.tchat{display:none}}
+@media(max-width:899px){#auth{grid-template-columns:1fr;padding-top:24px}}
+</style></head><body>
+<div id="auth"><div><div class="brand">DAI<span>STUDIO</span></div><h1>Build websites,<br><span class="g">apps &amp; visuals</span> with AI.</h1><p class="m">Describe it. DAI builds it, live, in seconds.</p></div>
+<div class="card"><div class="seg"><button id="m1" class="on">Sign up</button><button id="m2">Log in</button></div>
+<div id="s1"><label for="em">Email address</label><input id="em" type="email" placeholder="you@example.com" autocomplete="email"><button id="sc" class="go w">Send verification code</button></div>
+<div id="s2" hidden><p class="m">Enter the code we sent to <b id="to"></b></p><input id="ot" inputmode="numeric" maxlength="8" placeholder="Verification code" autocomplete="one-time-code"><button id="vf" class="go w">Verify &amp; continue</button><button id="rs" class="ghost w">Resend code</button><button id="bk" class="lnk">Change email</button></div>
+<p id="am" class="am" hidden style="margin-top:12px"></p>
+<details id="cfg"><summary>Connect Supabase</summary><label>Project URL</label><input id="cu" placeholder="https://your-project.supabase.co"><label>Publishable key</label><input id="ck" placeholder="sb_publishable_..." autocomplete="off"><button id="cs0" class="w">Save connection</button></details></div></div>
+<div id="app" hidden><header><div class="brand">DAI<span>STUDIO</span></div><div id="av" class="av">D</div></header><main id="v"></main>
+<nav><button class="nb" data-v="build"><i>✦</i>Build</button><button class="nb" data-v="projects"><i>▣</i>Projects</button><button class="nb" data-v="images"><i>▧</i>Images</button><button class="nb" data-v="video"><i>▶</i>Video</button><button class="nb" data-v="account"><i>⚙</i>Account</button></nav></div>
 <div id="toasts" class="toasts"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-(() => {
-'use strict';
-const $ = id => document.getElementById(id);
-const STORAGE_KEY = 'davidAI_workspace_v2';
-let supabaseClient = null, currentUser = null, authMode = 'signup', otpEmail = '', currentPage = 'dashboard', saveTimer = null;
-const DEFAULTS = () => ({projects:[], code:{html:'',css:'',js:''}, settings:{supabaseUrl:'',supabaseKey:''}, notes:[], chat:[], activeProject:null});
-let state = (() => { let s = {}; try { s = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) {} const d = DEFAULTS(); return {...d, ...s, settings:{...d.settings, ...(s.settings||{})}, code:{...d.code, ...(s.code||{})}}; })();
-function saveState(){ try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) { toast('Storage is full or blocked in this browser.', true); } }
-function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function toast(msg, isError=false){const t=document.createElement('div');t.className='toast'+(isError?' error':'');t.textContent=msg;$('toasts').appendChild(t);setTimeout(()=>t.remove(),isError?5000:2800)}
-function notice(message,isError=false){const el=$('authMessage');el.textContent=message;el.classList.remove('hidden','error');if(isError)el.classList.add('error')}
-function clearNotice(){$('authMessage').classList.add('hidden')}
-function config(){return {url:(state.settings.supabaseUrl||'').trim().replace(/\/$/,''),key:(state.settings.supabaseKey||'').trim()}}
-function connectSupabase(){
- const c=config();
- if(!c.url||!c.key){supabaseClient=null;return false}
- try{
-  if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(c.url))throw new Error('Enter a valid Supabase project URL ending in .supabase.co.');
-  if(!window.supabase||!window.supabase.createClient)throw new Error('Authentication library could not load. Check your internet connection.');
-  supabaseClient=window.supabase.createClient(c.url,c.key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
-  return true;
- }catch(e){supabaseClient=null;throw e}
+(()=>{'use strict';
+const $=s=>document.querySelector(s),K='davidAI_workspace_v2',SYS='You are DAI Builder, an expert web designer and developer. Reply with ONE complete, self-contained HTML document only (inline CSS and JS, no markdown, no explanation). Make it modern, beautiful, mobile-responsive, with real persuasive copy, clear sections and subtle animations. For images use https://image.pollinations.ai/prompt/<url-encoded description>?width=1200&height=800&nologo=true . Use no external scripts except Google Fonts. When given CURRENT CODE, apply the requested change and return the full updated document.';
+let S=(()=>{let s={};try{s=JSON.parse(localStorage.getItem(K))||{}}catch(e){}return{projects:[],...s,settings:{supabaseUrl:'',supabaseKey:'',...(s.settings||{})}}})();
+let sb=null,user=null,view='build',wt='chat',busy=false,mode='signup',mail='',cool=null;
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){toast('Storage is full. Delete old projects.',1)}};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function toast(m,e){const t=document.createElement('div');t.className='toast'+(e?' er':'');t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),e?5000:2600)}
+function connect(){const u=(S.settings.supabaseUrl||'').trim().replace(/\/$/,''),k=(S.settings.supabaseKey||'').trim();if(!u||!k||!window.supabase)return false;sb=supabase.createClient(u,k,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});return true}
+/* ---- auth ---- */
+function am(t,e){const x=$('#am');x.hidden=!t;x.textContent=t||'';x.className='am'+(e?' er':'')}
+function step(n){$('#s1').hidden=n!==1;$('#s2').hidden=n!==2}
+function setMode(m){mode=m;$('#m1').classList.toggle('on',m==='signup');$('#m2').classList.toggle('on',m==='login');$('#sc').textContent=m==='signup'?'Send verification code':'Send login code';am('');step(1)}
+function startCool(){let n=45;const b=$('#rs');b.disabled=true;clearInterval(cool);cool=setInterval(()=>{b.textContent=n>0?'Resend code ('+n--+'s)':'Resend code';if(n<0){b.disabled=false;clearInterval(cool)}},1000)}
+async function sendCode(resend){const e=resend?mail:$('#em').value.trim();if(!/^\S+@\S+\.\S+$/.test(e))return am('Enter a valid email address.',1);
+ try{if(!connect())throw Error('Open "Connect Supabase" below and save your project URL and key.');$('#sc').disabled=true;
+  const{error}=await sb.auth.signInWithOtp({email:e,options:{shouldCreateUser:mode==='signup'}});if(error)throw error;
+  mail=e;$('#to').textContent=e;step(2);am('Code sent. Check your inbox and spam folder.');startCool()}catch(x){am(x.message,1)}$('#sc').disabled=false}
+async function verify(){const t=$('#ot').value.trim();if(!/^\d{6,8}$/.test(t))return am('Enter the code from your email.',1);
+ try{if(!sb&&!connect())throw Error('Supabase is not connected.');const{data,error}=await sb.auth.verifyOtp({email:mail,token:t,type:'email'});if(error)throw error;enter(data.user)}catch(x){am(x.message,1)}}
+function enter(u){user=u;$('#auth').hidden=true;$('#app').hidden=false;$('#av').textContent=(u?.email||'D')[0].toUpperCase();render()}
+function showAuth(){user=null;$('#app').hidden=true;$('#auth').hidden=false;setMode('signup')}
+async function signOut(){try{await sb?.auth.signOut()}catch(e){}showAuth()}
+/* ---- data ---- */
+function cur(){const p=S.projects.find(x=>x.id===S.cur);if(p){p.chat=p.chat||[];p.versions=p.versions||[];p.code=p.code||{html:'',css:'',js:''}}return p}
+function newP(t){const p={id:'p'+Date.now(),name:(t||'Untitled').slice(0,40),type:'Website',date:new Date().toLocaleDateString(),code:{html:'',css:'',js:''},versions:[],chat:[]};S.projects.unshift(p);S.cur=p.id;save();return p}
+function docOf(p){const c=p.code||{};if(/<html|<!doctype/i.test(c.html||''))return c.html;if(!(c.html||c.css||c.js))return'';return`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${c.css||''}</style></head><body>${c.html||''}<script>${c.js||''}<\/script></body></html>`}
+function extract(t){t=t.replace(/```(?:html)?/gi,'');const i=t.search(/<!doctype|<html/i);if(i<0)return'';let h=t.slice(i);const e=h.toLowerCase().lastIndexOf('</html>');if(e>0)h=h.slice(0,e+7);return h.trim()}
+async function ask(content){if(!sb&&!connect())throw Error('Connect Supabase first (Account tab).');
+ const{data}=await sb.auth.getSession(),t=data?.session?.access_token;if(!t)throw Error('Please log in again.');
+ const u=S.settings.supabaseUrl.trim().replace(/\/$/,'');
+ const r=await fetch(u+'/functions/v1/smart-endpoint',{method:'POST',headers:{Authorization:'Bearer '+t,apikey:S.settings.supabaseKey.trim(),'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content}]})});
+ const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Server error '+r.status);return d.reply||''}
+async function gen(text){text=(text||'').trim();if(!text||busy)return;const p=cur()||newP(text);if(p.name==='Untitled')p.name=text.slice(0,40);
+ p.chat.push({r:'u',t:text});busy=true;view='build';wt='chat';save();render();
+ const have=docOf(p);
+ try{const rep=await ask(SYS+(have?`\n\nCURRENT CODE:\n${have}\n\nCHANGE REQUEST: ${text}`:`\n\nBUILD THIS: ${text}`)),h=extract(rep);
+  if(h){if(have){p.versions.push(have);p.versions=p.versions.slice(-8)}p.code={html:h,css:'',js:''};p.chat.push({r:'a',t:have?'✓ Updated. Check the preview.':'✓ Your site is ready. Open the Preview tab, or ask me for changes.'});wt='preview'}
+  else p.chat.push({r:'a',t:'I could not build that. Try describing it differently.'})}
+ catch(e){p.chat.push({r:'a',t:'⚠ '+e.message});toast(e.message,1)}
+ busy=false;save();if(view==='build')render()}
+/* ---- views ---- */
+function msgs(p){return(p.chat.length?p.chat.map(m=>`<div class="msg ${m.r}">${esc(m.t)}</div>`).join(''):'<p class="m">Describe a change to your site.</p>')+(busy?'<div class="msg a typing">Building… this can take up to a minute</div>':'')}
+function vBuild(){const p=cur();if(!p||(!docOf(p)&&!p.chat.length))return`<section class="hero"><span class="pill">✦ AI website builder</span><h1>Build anything.<br><span class="g">Just describe it.</span></h1><p class="m">Turn an idea into a live, editable website in seconds.</p><div class="pbox"><textarea id="hp" placeholder="Describe the website you want to build…"></textarea><div class="row"><div class="chips">${['Portfolio for a photographer','Restaurant landing page','Online sneaker store','Fitness coaching site'].map(c=>`<button class="chip" data-c="${c}">${c}</button>`).join('')}</div><button id="hg" class="go">Build ➜</button></div></div></section>`;
+ return`<div class="wsbar"><b>${esc(p.name)}</b><div class="tabs"><button class="t tchat" data-t="chat">Chat</button><button class="t" data-t="preview">Preview</button><button class="t" data-t="code">Code</button></div><button class="ic" id="undo" title="Undo">↶</button><button class="ic" id="open" title="Open full">⤢</button><button class="ic" id="copy" title="Copy code">⧉</button><button class="ic" id="dl" title="Download">⬇</button></div>
+<div id="ws" data-t="${wt}"><div id="chatP"><div id="msgs" class="msgs">${msgs(p)}</div><div class="cin"><textarea id="ci" placeholder="Ask for a change… e.g. make the hero darker"></textarea><button id="cs" class="go">➜</button></div></div>
+<div id="prevP"><div class="dev"><button class="ic" data-w="100%">🖥 Desktop</button><button class="ic" data-w="390px">📱 Mobile</button></div><div class="frame"><iframe id="fr" sandbox="allow-scripts allow-forms allow-popups allow-modals"></iframe></div></div>
+<div id="codeP"><textarea id="ce" spellcheck="false"></textarea></div></div>`}
+function vProjects(){return`<div class="row" style="justify-content:space-between"><div><h2>Projects</h2><p class="m" style="margin:0">Saved in this browser.</p></div><button id="np" class="go">＋ New</button></div><div class="grid">${S.projects.map(p=>`<div class="card"><b>${esc(p.name)}</b><div class="m" style="font-size:12px">${esc(p.type||'Website')} · ${esc(p.date||'')}</div><div class="row"><button data-o="${p.id}" class="go">Open</button><button data-r="${p.id}">Rename</button><button data-d="${p.id}">Delete</button></div></div>`).join('')||'<p class="m">No projects yet. Go to Build and describe your first site.</p>'}</div>`}
+function vImages(){return`<h2>Image Studio</h2><p class="m">Describe an image and DAI creates it (free service, can be slow at busy times).</p><div class="card"><textarea id="ip" placeholder="A neon-lit street in Lagos at night, cinematic…"></textarea><div class="row"><select id="is"><option value="">Auto style</option><option>photorealistic</option><option>3d render</option><option>flat illustration</option><option>anime</option><option>oil painting</option></select><select id="iz"><option value="1024x1024">Square</option><option value="1280x720">Wide</option><option value="720x1280">Tall</option></select><button id="ig" class="go">Generate</button></div></div><div id="io" class="imgs"></div>`}
+function vVideo(){return`<h2>Video Studio</h2><p class="m">Real video rendering needs a paid provider. This writes a full scene-by-scene storyboard, script and shot list you can use in any video tool.</p><div class="card"><textarea id="vp" placeholder="A 30-second ad for a Lagos coffee brand…"></textarea><div class="row"><button id="vg" class="go">Create storyboard</button><button id="vc" class="ghost">Copy</button></div></div><div id="vo" class="pre"></div>`}
+function vAccount(){return`<h2>Account</h2><div class="card"><b>${esc(user?.email||'')}</b><p class="m">Signed in. Your projects are saved in this browser.</p><div class="row"><a href="admin/"><button>Admin dashboard</button></a><button id="so">Sign out</button></div></div><div class="card" style="margin-top:12px"><b>Supabase connection</b><label>Project URL</label><input id="au" value="${esc(S.settings.supabaseUrl)}"><label>Publishable key</label><input id="ak" value="${esc(S.settings.supabaseKey)}" autocomplete="off"><div class="row"><button id="as" class="go">Save</button><button id="ex">Export backup</button></div></div>`}
+function render(){$('#v').innerHTML=({build:vBuild,projects:vProjects,images:vImages,video:vVideo,account:vAccount}[view]||vBuild)();document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on',b.dataset.v===view));bind()}
+function setT(t){wt=t;const w=$('#ws');if(w)w.dataset.t=t;document.querySelectorAll('.t').forEach(b=>b.classList.toggle('on',b.dataset.t===t||(t==='chat'&&matchMedia('(min-width:900px)').matches&&b.dataset.t==='preview')))}
+const dl=(n,c,t)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)};
+function copy(t){if(!t)return toast('Nothing to copy yet.',1);(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast('Copied.')).catch(()=>{const x=document.createElement('textarea');x.value=t;document.body.appendChild(x);x.select();document.execCommand('copy');x.remove();toast('Copied.')})}
+function bind(){
+ if(view==='build'){const p=cur();
+  if($('#hg')){$('#hg').onclick=()=>gen($('#hp').value);document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{$('#hp').value='Build a '+b.dataset.c.toLowerCase()+' with a stunning hero, features, testimonials and contact section'});return}
+  const d=docOf(p);$('#fr').srcdoc=d;$('#ce').value=d;setT(wt);
+  document.querySelectorAll('.t').forEach(b=>b.onclick=()=>setT(b.dataset.t));
+  document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{$('#fr').style.maxWidth=b.dataset.w});
+  const send=()=>{const v=$('#ci').value;$('#ci').value='';gen(v)};$('#cs').onclick=send;$('#cs').disabled=busy;
+  $('#ci').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();send()}};
+  const m=$('#msgs');m.scrollTop=m.scrollHeight;let tm;
+  $('#ce').oninput=e=>{clearTimeout(tm);tm=setTimeout(()=>{p.code={html:e.target.value,css:'',js:''};save();$('#fr').srcdoc=e.target.value},600)};
+  $('#undo').onclick=()=>{if(!p.versions.length)return toast('Nothing to undo.',1);p.code={html:p.versions.pop(),css:'',js:''};save();render();toast('Reverted.')};
+  $('#open').onclick=()=>{const u=URL.createObjectURL(new Blob([docOf(p)],{type:'text/html'}));window.open(u,'_blank')};
+  $('#copy').onclick=()=>copy(docOf(p));
+  $('#dl').onclick=()=>dl((p.name.replace(/[^\w-]+/g,'-').toLowerCase()||'site')+'.html',docOf(p),'text/html')}
+ if(view==='projects'){$('#np').onclick=()=>{S.cur=null;save();view='build';render()};
+  document.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{S.cur=b.dataset.o;wt='preview';save();view='build';render()});
+  document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const p=S.projects.find(x=>x.id===b.dataset.r),n=prompt('New name?',p.name);if(n?.trim()){p.name=n.trim();save();render()}});
+  document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{if(confirm('Delete this project?')){S.projects=S.projects.filter(x=>x.id!==b.dataset.d);if(S.cur===b.dataset.d)S.cur=null;save();render()}})}
+ if(view==='images')$('#ig').onclick=()=>{const t=$('#ip').value.trim();if(!t)return toast('Describe your image first.',1);const[w,h]=$('#iz').value.split('x'),st=$('#is').value;
+  $('#io').innerHTML=[0,1].map(()=>{const u=`https://image.pollinations.ai/prompt/${encodeURIComponent(t+(st?', '+st:''))}?width=${w}&height=${h}&nologo=true&seed=${Math.floor(Math.random()*1e6)}`;return`<div class="card" style="padding:10px"><img src="${u}" alt="Generated image"><div class="row"><button data-u="${u}" class="a1">Download</button><button data-u="${u}" class="a2">Copy link</button></div></div>`}).join('');
+  document.querySelectorAll('.a1').forEach(b=>b.onclick=async()=>{try{const r=await fetch(b.dataset.u),bl=await r.blob(),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='dai-image.png';a.click()}catch(e){window.open(b.dataset.u,'_blank')}});
+  document.querySelectorAll('.a2').forEach(b=>b.onclick=()=>copy(b.dataset.u))};
+ if(view==='video'){$('#vg').onclick=async()=>{const t=$('#vp').value.trim();if(!t)return toast('Describe your video first.',1);$('#vg').disabled=true;$('#vo').textContent='Writing your storyboard…';
+  try{$('#vo').textContent=await ask('Create a professional video storyboard for: '+t+'\nGive: title, total length, then numbered scenes each with visual description, camera shot, voiceover line, on-screen text and duration. End with music and style suggestions. Plain text only.')}catch(e){$('#vo').textContent='';toast(e.message,1)}$('#vg').disabled=false};
+  $('#vc').onclick=()=>copy($('#vo').textContent)}
+ if(view==='account'){$('#so').onclick=signOut;$('#ex').onclick=()=>dl('dai-studio-backup.json',JSON.stringify(S,null,2),'application/json');
+  $('#as').onclick=()=>{S.settings.supabaseUrl=$('#au').value.trim();S.settings.supabaseKey=$('#ak').value.trim();save();try{connect();toast('Saved.')}catch(e){toast(e.message,1)}}}
 }
-function setAuthMode(mode){authMode=mode;clearNotice();$('otpForm').classList.add('hidden');$('emailForm').classList.remove('hidden');$('oauthArea').classList.remove('hidden');$('emailDivider').classList.remove('hidden');$('authTitle').textContent=mode==='signup'?'Create your DAI Studio account':'Welcome back';$('authSubtitle').textContent=mode==='signup'?'Choose a provider or sign up with your email.':'Choose a provider or log in with your email.';$('emailAction').textContent=mode==='signup'?'Send verification code':'Log in';$('showSignup').className=mode==='signup'?'':'ghost';$('showLogin').className=mode==='login'?'':'ghost';$('passwordField').classList.toggle('hidden',mode==='signup');$('passwordInput').autocomplete=mode==='signup'?'new-password':'current-password';}
-function showAuth(){ $('authScreen').classList.remove('hidden');$('appScreen').classList.add('hidden');setAuthMode('signup');}
-function showApp(user){
- currentUser=user||null;
- $('authScreen').classList.add('hidden');$('appScreen').classList.remove('hidden');
- $('userEmail').textContent=user?.email||'Local workspace';$('userAvatar').textContent=(user?.email||'D').slice(0,1).toUpperCase();
- $('connectionStatus').textContent=supabaseClient?(user?'Authenticated':'Connected'):'Local workspace';
- renderPage(currentPage);
-}
-async function refreshSession(){
- if(!supabaseClient)return;
- const {data,error}=await supabaseClient.auth.getSession();
- if(error)console.warn(error);
- if(data?.session?.user){currentUser=data.session.user;showApp(currentUser)}
-}
-async function oauth(provider){
- clearNotice();
- try{
-  if(!connectSupabase())throw new Error('Connect Supabase first (open "Connect Supabase authentication" below). Social sign-in works after the provider is enabled in Supabase.');
-  const {error}=await supabaseClient.auth.signInWithOAuth({provider,options:{redirectTo:window.location.href.split('#')[0]}});
-  if(error)throw error;
- }catch(e){notice(e.message||'Could not start sign-in.',true)}
-}
-function startOtpScreen(email,msg){otpEmail=email;$('emailForm').classList.add('hidden');$('oauthArea').classList.add('hidden');$('emailDivider').classList.add('hidden');$('otpForm').classList.remove('hidden');notice(msg)}
-document.querySelectorAll('[data-provider]').forEach(b=>b.addEventListener('click',()=>oauth(b.dataset.provider)));
-$('authSupabaseUrl').value=state.settings.supabaseUrl||'';
-$('authSupabaseKey').value=state.settings.supabaseKey||'';
-$('saveAuthSupabase').onclick=()=>{
- clearNotice();
- state.settings.supabaseUrl=$('authSupabaseUrl').value.trim();
- state.settings.supabaseKey=$('authSupabaseKey').value.trim();
- saveState();
- try{
-  if(!connectSupabase())throw new Error('Enter both the Supabase project URL and public key.');
-  notice('Supabase client configured. Enable email auth and the social providers in Supabase before signing in.');
- }catch(e){notice(e.message,true)}
-};
-$('showSignup').onclick=()=>setAuthMode('signup');$('showLogin').onclick=()=>setAuthMode('login');
-$('emailAction').onclick=async()=>{
- clearNotice();
- const email=$('emailInput').value.trim(),password=$('passwordInput').value;
- if(!email||!email.includes('@'))return notice('Enter a valid email address.',true);
- const btn=$('emailAction');btn.disabled=true;
- try{
-  if(!connectSupabase())throw new Error('Supabase is not connected yet. Open "Connect Supabase authentication" below and save your project URL and publishable key.');
-  if(authMode==='signup'){
-   const {error}=await supabaseClient.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:window.location.href.split('#')[0]}});
-   if(error)throw error;
-   startOtpScreen(email,'A verification code has been requested. Check your inbox and spam folder.');
-  }else if(!password){
-   const {error}=await supabaseClient.auth.signInWithOtp({email,options:{shouldCreateUser:false}});
-   if(error)throw error;
-   startOtpScreen(email,'Login code requested. Check your inbox and spam folder.');
-  }else{
-   const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
-   if(error)throw error;
-   if(data.user&&!data.user.email_confirmed_at)throw new Error('Please verify your email before continuing.');
-   showApp(data.user);
-  }
- }catch(e){notice(e.message||'Authentication failed.',true)}
- btn.disabled=false;
-};
-$('verifyOtp').onclick=async()=>{
- clearNotice();const token=$('otpInput').value.trim();
- if(!/^\d{6}$/.test(token))return notice('Enter the 6-digit code from your email.',true);
- try{
-  if(!supabaseClient)connectSupabase();
-  const {data,error}=await supabaseClient.auth.verifyOtp({email:otpEmail,token,type:'email'});
-  if(error)throw error;
-  if(!data.user)throw new Error('Verification was not completed. Try again.');
-  showApp(data.user);
- }catch(e){notice(e.message||'Could not verify that code.',true)}
-};
-$('resendOtp').onclick=async()=>{
- try{if(!supabaseClient)connectSupabase();const {error}=await supabaseClient.auth.signInWithOtp({email:otpEmail,options:{shouldCreateUser:authMode==='signup'}});if(error)throw error;notice('A new code has been requested. Check your inbox.')}catch(e){notice(e.message||'Could not resend the code.',true)}
-};
-['emailInput','passwordInput'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('emailAction').click()}));
-$('otpInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('verifyOtp').click()});
-async function signOut(){
- if(supabaseClient){try{await supabaseClient.auth.signOut()}catch(e){console.warn(e)}}
- currentUser=null;showAuth();
-}
-$('signOutSide').onclick=signOut;
-$('mobileMenu').onclick=()=>$('sidebar').classList.toggle('open');
-document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.addEventListener('click',()=>{currentPage=b.dataset.page;$('sidebar').classList.remove('open');renderPage(currentPage)}));
-
-/* ---------- Modal ---------- */
-function openModal(html){$('modalRoot').innerHTML=`<div class="modal-backdrop"><div class="modal">${html}</div></div>`;$('modalRoot').querySelector('.modal-backdrop').addEventListener('click',e=>{if(e.target.classList.contains('modal-backdrop'))closeModal()})}
-function closeModal(){$('modalRoot').innerHTML=''}
-
-/* ---------- Pages ---------- */
-function pageHead(title,desc,actions=''){return `<div class="page-head"><div><h1>${title}</h1><p>${desc}</p></div><div class="toolbar">${actions}</div></div>`}
-function renderPage(page){
- currentPage=page;document.querySelectorAll('.nav-btn[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- const names={dashboard:'Dashboard',assistant:'AI Assistant',projects:'My Projects',code:'Code Studio',image:'AI Image Studio',video:'AI Video Studio',writer:'AI Writer',voice:'AI Voice Studio',github:'GitHub Import',platforms:'Other Platforms',models:'AI Models & Setup',settings:'Settings'};
- $('topTitle').textContent=names[page]||'DAI Studio';
- const fn={dashboard:dashboardPage,assistant:assistantPage,projects:projectsPage,code:codePage,image:()=>promptStudio('image'),video:()=>promptStudio('video'),writer:()=>promptStudio('writer'),voice:()=>promptStudio('voice'),github:githubPage,platforms:platformsPage,models:modelsPage,settings:settingsPage};
- $('pageContent').innerHTML=(fn[page]||dashboardPage)();
- bindPage(page);
- window.scrollTo(0,0);
-}
-function toolCard(page,icon,title,desc){return `<div class="card tool-card" data-go="${page}"><div class="card-icon">${icon}</div><h3>${title}</h3><p>${desc}</p><span class="status">Open tool →</span></div>`}
-function dashboardPage(){
- const recent=state.projects.slice(0,3).map(p=>`<div class="list-row"><div><strong>${esc(p.name)}<span class="tag">${esc(p.type)}</span></strong><small>${esc(p.date||'')}</small></div><button class="secondary" data-open-project="${p.id}">Open</button></div>`).join('')||'<div class="empty">No projects yet.</div>';
- return `${pageHead('Welcome to DAI Studio','Your workspace for building, creating and organizing.')}<div class="grid cards"><div class="card"><div class="card-icon">📁</div><div class="muted">Saved projects</div><div class="stat">${state.projects.length}</div><button class="secondary" data-go="projects">Open projects</button></div><div class="card"><div class="card-icon">💬</div><div class="muted">Chat messages</div><div class="stat">${state.chat.length}</div><button class="secondary" data-go="assistant">Open assistant</button></div><div class="card"><div class="card-icon">✦</div><div class="muted">AI connection</div><div class="stat" style="font-size:20px">${supabaseClient?'Backend configured':'Setup required'}</div><button class="secondary" data-go="models">Configure AI</button></div></div><h2 style="margin-top:30px">Recent projects</h2><div class="list">${recent}</div><h2 style="margin-top:30px">Your tools</h2><div class="grid cards">${toolCard('assistant','🤖','AI Assistant','Chat with your AI through a secure backend.')}${toolCard('code','💻','Code Studio','Edit HTML, CSS and JavaScript with live preview.')}${toolCard('image','🎨','AI Image Studio','Prepare image-generation prompts.')}${toolCard('video','🎬','AI Video Studio','Prepare video concepts and prompts.')}${toolCard('writer','✍️','AI Writer','Draft content prompts and writing briefs.')}${toolCard('voice','🎙️','AI Voice Studio','Prepare voiceover scripts and briefs.')}</div><p class="footer-note">Creative studios prepare briefs locally. They do not generate media until a real provider is connected.</p>`}
-
-/* ----- Assistant ----- */
-function chatHTML(pending){const m=state.chat.map(x=>`<div class="msg ${x.role}">${esc(x.content)}</div>`).join('');return (m||'<div class="empty">Ask anything to get started.</div>')+(pending?'<div class="msg assistant typing">Thinking…</div>':'')}
-function drawChat(pending){const b=$('chatBox');if(!b)return;b.innerHTML=chatHTML(pending);b.scrollTop=b.scrollHeight}
-function assistantPage(){return `${pageHead('AI Assistant','Chat with your AI. Needs the ai-chat Edge Function and a signed-in account.','<button id="clearChat" class="secondary">Clear chat</button>')}<div class="card"><div id="chatBox" class="chat">${chatHTML(false)}</div><div class="chat-input"><textarea id="chatInput" placeholder="Message… (Ctrl+Enter to send)"></textarea><button id="sendChat">Send</button></div><p class="small muted">API keys stay in server-side secrets. They are never stored in this file.</p></div>`}
-async function sendChat(){
- const inp=$('chatInput'),text=inp.value.trim();if(!text)return;
- if(!supabaseClient)return toast('Connect Supabase first (AI Models & Setup).',true);
- state.chat.push({role:'user',content:text});state.chat=state.chat.slice(-60);inp.value='';saveState();drawChat(true);
- $('sendChat').disabled=true;
- try{
-  const {data:s}=await supabaseClient.auth.getSession();const token=s?.session?.access_token;
-  if(!token)throw new Error('Sign in with an online account to use the assistant.');
-  const c=config();
-  const res=await fetch(`${c.url}//functions/v1/smart-endpoint`,{method:'POST',headers:{Authorization:`Bearer ${token}`,apikey:c.key,'Content-Type':'application/json'},body:JSON.stringify({messages:state.chat.slice(-20)})});
-  const d=await res.json().catch(()=>({}));
-  if(!res.ok)throw new Error(d.error||`Backend error (HTTP ${res.status}). Is the ai-chat function deployed?`);
-  state.chat.push({role:'assistant',content:d.reply||'(empty reply)'});
- }catch(e){toast(e.message,true)}
- saveState();
- if(currentPage==='assistant'){drawChat(false);const b=$('sendChat');if(b)b.disabled=false}
-}
-
-/* ----- Projects ----- */
-function projectsPage(){
- return `${pageHead('My Projects','Each project keeps its own code, saved in this browser.','<input id="projSearch" class="search" placeholder="Search projects…"><button id="newProject">＋ New project</button>')}<div id="projectList" class="list">${projectRows('')}</div>`}
-function projectRows(q){
- const list=state.projects.filter(p=>p.name.toLowerCase().includes(q.toLowerCase()));
- if(!list.length)return `<div class="empty">${state.projects.length?'No matches.':'No projects yet. Create your first project.'}</div>`;
- return list.map(p=>`<div class="list-row"><div><strong>${esc(p.name)}<span class="tag">${esc(p.type)}</span>${state.activeProject===p.id?'<span class="tag">active</span>':''}</strong><small>${esc(p.date||'')}</small></div><div class="toolbar" style="margin:0"><button class="secondary" data-open-project="${p.id}">Open</button><button class="ghost" data-rename-project="${p.id}">Rename</button><button class="danger" data-delete-project="${p.id}">Delete</button></div></div>`).join('')}
-const TEMPLATES={
- blank:{label:'Blank',html:'',css:'',js:''},
- landing:{label:'Landing page',html:'<main class="hero"><h1>Your Product</h1><p>A short, clear promise goes here.</p><button id="cta">Get started</button></main>',css:'body{margin:0;font-family:system-ui,sans-serif;background:#0b1020;color:#fff}.hero{min-height:100vh;display:grid;place-content:center;text-align:center;gap:14px;padding:24px}h1{font-size:clamp(34px,8vw,64px);margin:0}button{padding:12px 20px;border:0;border-radius:10px;background:#5b8cff;color:#fff;font-weight:700}',js:"document.getElementById('cta').onclick=()=>alert('Welcome!');"},
- todo:{label:'To-do app',html:'<main><h1>To-do</h1><input id="t" placeholder="New task"><button id="a">Add</button><ul id="l"></ul></main>',css:'body{font-family:system-ui,sans-serif;max-width:480px;margin:30px auto;padding:0 16px}input{padding:10px;width:65%}button{padding:10px}li{padding:6px 0;cursor:pointer}',js:"const l=document.getElementById('l');document.getElementById('a').onclick=()=>{const v=document.getElementById('t').value.trim();if(!v)return;const li=document.createElement('li');li.textContent=v;li.onclick=()=>li.remove();l.appendChild(li);document.getElementById('t').value=''}"}
-};
-function activeProject(){return state.projects.find(p=>p.id===state.activeProject)}
-function syncActive(){const p=activeProject();if(p){p.code={...state.code};p.updated=new Date().toLocaleString()}}
-
-/* ----- Code Studio ----- */
-function codePage(){
- const p=activeProject();
- return `${pageHead('Code Studio','Edit HTML, CSS and JavaScript, then preview the result.','<button id="saveCode" class="secondary">Save</button><button id="copyCode" class="secondary">Copy HTML</button><button id="downloadCode">Download HTML</button>')}<div class="active-proj">${p?'Project: '+esc(p.name):'No project selected — changes save to the scratch workspace.'}</div><div class="toolbar"><button id="runCode">▶ Run preview</button><select id="tplSelect" style="width:auto"><option value="">Load template…</option>${Object.entries(TEMPLATES).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('')}</select><button class="secondary" id="clearCode">Clear editors</button></div><div class="editor-grid"><div><label>HTML</label><textarea id="htmlCode" spellcheck="false" placeholder="<h1>Hello DAI Studio</h1>">${esc(state.code.html)}</textarea></div><div><label>CSS</label><textarea id="cssCode" spellcheck="false" placeholder="body { font-family: sans-serif; }">${esc(state.code.css)}</textarea></div><div><label>JavaScript</label><textarea id="jsCode" spellcheck="false" placeholder="console.log('Hello');">${esc(state.code.js)}</textarea></div></div><h3>Live Preview</h3><iframe id="codePreview" class="preview" sandbox="allow-scripts"></iframe><p class="small muted">Tip: Ctrl+Enter runs the preview. Changes auto-save as you type.</p>`}
-function buildDoc(full){const c=state.code;return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${c.css}</style></head><body>${c.html}<script>${c.js.replace(/<\/script/gi,'<\\/script')}<\/script></body></html>`}
-
-/* ----- Studios ----- */
-const STUDIOS={image:['AI Image Studio','Describe the image you want to create.','A clean editorial illustration of...'],video:['AI Video Studio','Prepare a video concept and generation prompt.','A 10-second cinematic video showing...'],writer:['AI Writer','Prepare a writing brief for your chosen task.','Write a clear, engaging article about...'],voice:['AI Voice Studio','Prepare a voiceover script and voice direction.','Narration script and tone...']};
-function promptStudio(kind){
- const data=STUDIOS[kind];
- const hist=state.notes.filter(n=>n.kind===kind).slice(0,5).map((n,i)=>`<div class="list-row"><div><strong>${esc(n.text.slice(0,60))}${n.text.length>60?'…':''}</strong><small>${esc(n.date)}</small></div><button class="secondary" data-reuse="${n.id}">Reuse</button></div>`).join('');
- return `${pageHead(data[0],data[1])}<div class="card"><div class="field"><label>${kind==='writer'?'Writing brief':kind==='voice'?'Script / voice direction':'Creative brief'}</label><textarea id="studioPrompt" placeholder="${data[2]}"></textarea></div><div class="field"><label>Style or additional instructions</label><input id="studioStyle" placeholder="e.g. modern, professional, friendly, cinematic"></div><div class="toolbar"><button id="buildPrompt">Prepare prompt</button><button class="secondary" id="copyStudio">Copy prompt</button></div><div class="field"><label>Prepared prompt</label><textarea id="studioResult" readonly placeholder="Your prepared prompt will appear here."></textarea></div><p class="small muted">This tool prepares prompts only. Connect a provider through a secure backend to generate media or text.</p></div>${hist?`<h3 style="margin-top:24px">Recent briefs</h3><div class="list">${hist}</div>`:''}`}
-
-function githubPage(){return `${pageHead('GitHub Import','Import a file from a public GitHub repository into Code Studio.')}<div class="card"><div class="field"><label>GitHub repository URL</label><input id="repoUrl" placeholder="https://github.com/owner/repository"></div><button id="loadRepo">Load repository files</button><div id="repoStatus" class="notice hidden"></div><div class="field"><label>Files</label><select id="repoFiles"><option value="">Load a repository first</option></select></div><div class="toolbar"><button id="importRepoFile">Import selected file to editor</button></div><p class="small muted">Only public repositories are supported. Private repositories need secure OAuth/backend integration.</p></div>`}
-function platformsPage(){const items=[['GitHub','https://github.com/'],['GitLab','https://gitlab.com/'],['Bitbucket','https://bitbucket.org/'],['Replit','https://replit.com/'],['CodePen','https://codepen.io/'],['Cloudflare','https://dash.cloudflare.com/'],['Netlify','https://app.netlify.com/'],['Vercel','https://vercel.com/'],['WordPress','https://wordpress.com/']];return `${pageHead('Other Platforms','Quick access to development, hosting and publishing platforms.')}<div class="grid cards">${items.map(([n,u])=>`<div class="card"><h3>${n}</h3><p>Open ${n} in a new tab.</p><a href="${u}" target="_blank" rel="noopener noreferrer"><button class="secondary">Open platform ↗</button></a></div>`).join('')}</div><p class="footer-note">These are shortcuts, not connected accounts.</p>`}
-function modelsPage(){return `${pageHead('AI Models & Setup','Configure Supabase. Provider API calls run in secure backend functions.')}<div class="grid two"><div class="card"><h3>Supabase connection</h3><p>Use your project URL and publishable key. Never enter a secret/service-role key here.</p><div class="field"><label>Project URL</label><input id="supabaseUrl" placeholder="https://your-project.supabase.co" value="${esc(state.settings.supabaseUrl||'')}"></div><div class="field"><label>Publishable key / anon public key</label><input id="supabaseKey" placeholder="sb_publishable_..." value="${esc(state.settings.supabaseKey||'')}" autocomplete="off"></div><div class="toolbar"><button id="saveSupabase">Save & connect</button><button class="secondary" id="testSupabase">Test session</button></div><div id="supabaseStatus" class="notice hidden"></div></div><div class="card"><h3>Provider directory</h3><p>Configure a provider in its official dashboard, then call it from your Edge Function.</p><div class="list">${[['OpenAI','https://platform.openai.com/'],['Google AI Studio / Gemini','https://aistudio.google.com/'],['Anthropic / Claude','https://console.anthropic.com/'],['OpenRouter','https://openrouter.ai/'],['Qwen','https://qwen.ai/']].map(([n,u])=>`<div class="list-row"><strong>${n}</strong><a href="${u}" target="_blank" rel="noopener noreferrer">Open ↗</a></div>`).join('')}</div><p class="small muted">Never paste private AI API keys into the browser.</p></div></div><div class="card" style="margin-top:16px"><h3>Setup checklist</h3><ol class="muted"><li>In Supabase → Authentication, set your site URL and redirect URLs.</li><li>Enable Google, GitHub, GitLab and Bitbucket and add each provider's OAuth credentials.</li><li>Configure SMTP/email templates for OTP codes.</li><li>Deploy the <code>ai-chat</code> Edge Function and set your provider key as a secret.</li><li>Use row-level security (RLS) on every user-owned table.</li></ol></div>`}
-function settingsPage(){return `${pageHead('Settings','Manage your local workspace and account.')}<div class="grid two"><div class="card"><h3>Account</h3><p>${esc(currentUser?.email||'Local workspace')}</p><p class="small muted">${currentUser?.email_confirmed_at?'Email verified':currentUser?'Signed in':'Not connected to an online account'}</p><button id="settingsSignOut" class="secondary">Sign out</button></div><div class="card"><h3>Local data</h3><p class="muted">Projects, chat and code are saved in this browser only.</p><div class="toolbar"><button id="exportBackup" class="secondary">Export backup</button><button id="importBackup" class="secondary">Import backup</button><input id="backupFile" class="hidden" type="file" accept="application/json"></div><button id="resetLocal" class="danger">Reset local workspace</button></div></div><p class="footer-note">Backups include your Supabase URL and public key but never passwords. Don't share passwords, codes or private API keys.</p>`}
-
-/* ---------- Binding ---------- */
-function bindPage(page){
- document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>renderPage(b.dataset.go));
- document.querySelectorAll('[data-open-project]').forEach(b=>b.onclick=()=>openProject(b.dataset.openProject));
- if(page==='assistant'){
-  drawChat(false);
-  $('sendChat').onclick=sendChat;
-  $('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendChat()}});
-  $('clearChat').onclick=()=>{if(confirm('Clear the whole conversation?')){state.chat=[];saveState();drawChat(false)}};
- }
- if(page==='projects'){
-  $('projSearch').oninput=e=>{$('projectList').innerHTML=projectRows(e.target.value);bindProjectButtons()};
-  $('newProject').onclick=()=>{
-   openModal(`<h3>New project</h3><div class="field"><label>Name</label><input id="pName" placeholder="My website"></div><div class="field"><label>Type</label><select id="pType"><option>Website</option><option>App</option><option>Content</option><option>General</option></select></div><div class="field"><label>Starting template</label><select id="pTpl">${Object.entries(TEMPLATES).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('')}</select></div><div class="toolbar"><button id="pCreate">Create</button><button class="ghost" id="pCancel">Cancel</button></div>`);
-   $('pCancel').onclick=closeModal;
-   $('pCreate').onclick=()=>{const name=$('pName').value.trim();if(!name)return toast('Enter a project name.',true);const t=TEMPLATES[$('pTpl').value];state.projects.unshift({id:'p'+Date.now(),name,type:$('pType').value,date:new Date().toLocaleDateString(),code:{html:t.html,css:t.css,js:t.js}});saveState();closeModal();toast('Project created.');renderPage('projects')};
-  };
-  bindProjectButtons();
- }
- if(page==='code'){
-  const update=()=>{state.code={html:$('htmlCode').value,css:$('cssCode').value,js:$('jsCode').value};syncActive()};
-  const run=()=>{update();$('codePreview').srcdoc=buildDoc()};
-  $('runCode').onclick=run;
-  $('saveCode').onclick=()=>{update();saveState();toast('Saved.')};
-  ['htmlCode','cssCode','jsCode'].forEach(id=>{$(id).addEventListener('input',()=>{clearTimeout(saveTimer);saveTimer=setTimeout(()=>{update();saveState()},600)});$(id).addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();run()}})});
-  $('tplSelect').onchange=e=>{const t=TEMPLATES[e.target.value];if(!t)return;if(($('htmlCode').value||$('cssCode').value||$('jsCode').value)&&!confirm('Replace current code with this template?')){e.target.value='';return}$('htmlCode').value=t.html;$('cssCode').value=t.css;$('jsCode').value=t.js;saveState();run()};
-  $('clearCode').onclick=()=>{if(confirm('Clear all three editors?')){$('htmlCode').value='';$('cssCode').value='';$('jsCode').value='';update();saveState();$('codePreview').srcdoc=''}};
-  $('copyCode').onclick=()=>{update();copyText(buildDoc())};
-  $('downloadCode').onclick=()=>{update();const p=activeProject();downloadFile(((p?p.name:'dai-project').replace(/[^\w-]+/g,'-').toLowerCase()||'dai-project')+'.html',buildDoc(),'text/html')};
-  if(state.code.html||state.code.css||state.code.js)run();
- }
- if(STUDIOS[page]){
-  $('buildPrompt').onclick=()=>{const t=$('studioPrompt').value.trim();if(!t)return toast('Write your brief first.',true);const s=$('studioStyle').value.trim();$('studioResult').value=`${t}${s?`\n\nStyle / instructions: ${s}`:''}\n\nPlease follow the brief accurately and produce a polished, high-quality result.`;state.notes.unshift({id:'n'+Date.now(),kind:page,text:t,style:s,date:new Date().toLocaleString()});state.notes=state.notes.slice(0,40);saveState()};
-  $('copyStudio').onclick=()=>copyText($('studioResult').value||$('studioPrompt').value);
-  document.querySelectorAll('[data-reuse]').forEach(b=>b.onclick=()=>{const n=state.notes.find(x=>x.id===b.dataset.reuse);if(n){$('studioPrompt').value=n.text;$('studioStyle').value=n.style||'';window.scrollTo(0,0)}});
- }
- if(page==='github'){
-  $('loadRepo').onclick=async()=>{
-   const status=$('repoStatus');status.classList.remove('hidden','error');status.textContent='Loading public repository files…';
-   try{
-    const m=$('repoUrl').value.trim().match(/github\.com\/([^/]+)\/([^/#?]+)/i);if(!m)throw new Error('Enter a valid public GitHub repository URL.');
-    const owner=m[1],repo=m[2].replace(/\.git$/,'');
-    const res=await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`);if(!res.ok)throw new Error('Repository not found, private, or GitHub rate limit reached.');
-    const info=await res.json();const treeRes=await fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(info.default_branch)}?recursive=1`);if(!treeRes.ok)throw new Error('Could not list repository files.');
-    const tree=await treeRes.json();const files=(tree.tree||[]).filter(x=>x.type==='blob'&&/\.(html?|css|js|json|md|txt|tsx?|jsx?)$/i.test(x.path));
-    $('repoFiles').innerHTML=files.map(f=>`<option value="${esc(f.path)}" data-owner="${esc(owner)}" data-repo="${esc(repo)}" data-branch="${esc(info.default_branch)}">${esc(f.path)}</option>`).join('')||'<option value="">No supported text files found</option>';
-    status.textContent=`Loaded ${files.length} supported files from ${owner}/${repo}.`+(tree.truncated?' (list truncated by GitHub)':'');
-   }catch(e){status.textContent=e.message;status.classList.add('error')}
-  };
-  $('importRepoFile').onclick=async()=>{
-   const opt=$('repoFiles').selectedOptions[0];if(!opt||!opt.value)return toast('Load a repository and select a file first.',true);
-   const status=$('repoStatus');status.classList.remove('hidden','error');status.textContent='Importing file…';
-   try{const raw=`https://raw.githubusercontent.com/${opt.dataset.owner}/${opt.dataset.repo}/${opt.dataset.branch}/${opt.value.split('/').map(encodeURIComponent).join('/')}`;const r=await fetch(raw);if(!r.ok)throw new Error('Could not download selected file.');const txt=await r.text();const ext=opt.value.split('.').pop().toLowerCase();if(ext==='css')state.code.css=txt;else if(['js','ts','jsx','tsx'].includes(ext))state.code.js=txt;else state.code.html=txt;syncActive();saveState();status.textContent=`Imported ${opt.value}. Open Code Studio to view it.`;toast('File imported.')}catch(e){status.textContent=e.message;status.classList.add('error')}
-  };
- }
- if(page==='models'){
-  $('saveSupabase').onclick=()=>{state.settings.supabaseUrl=$('supabaseUrl').value.trim();state.settings.supabaseKey=$('supabaseKey').value.trim();saveState();const s=$('supabaseStatus');s.classList.remove('hidden','error');try{connectSupabase();s.textContent='Supabase client initialized. Providers and redirect URLs must also be set in Supabase.';$('connectionStatus').textContent='Supabase configured'}catch(e){s.textContent=e.message;s.classList.add('error')}};
-  $('testSupabase').onclick=async()=>{const s=$('supabaseStatus');s.classList.remove('hidden','error');try{if(!connectSupabase())throw new Error('Enter and save your Supabase project URL and publishable key first.');const {data,error}=await supabaseClient.auth.getSession();if(error)throw error;s.textContent=data.session?'Connection works. A session is active.':'Client initialized. No user session is currently active.'}catch(e){s.textContent=e.message;s.classList.add('error')}};
- }
- if(page==='settings'){
-  $('settingsSignOut').onclick=signOut;
-  $('exportBackup').onclick=()=>downloadFile('dai-studio-backup.json',JSON.stringify(state,null,2),'application/json');
-  $('importBackup').onclick=()=>$('backupFile').click();
-  $('backupFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj||typeof obj!=='object'||Array.isArray(obj))throw new Error();const d=DEFAULTS();state={...d,...obj,settings:{...d.settings,...(obj.settings||{})},code:{...d.code,...(obj.code||{})}};saveState();renderPage('settings');toast('Backup imported.')}catch(_){toast('That backup file is not valid.',true)}};
-  $('resetLocal').onclick=()=>{if(confirm('Reset local projects, code, chat and settings on this browser? This does not delete your Supabase account.')){state=DEFAULTS();saveState();supabaseClient=null;renderPage('settings');toast('Workspace reset.')}};
- }
-}
-function bindProjectButtons(){
- document.querySelectorAll('#projectList [data-open-project]').forEach(b=>b.onclick=()=>openProject(b.dataset.openProject));
- document.querySelectorAll('[data-delete-project]').forEach(b=>b.onclick=()=>{if(confirm('Delete this project?')){state.projects=state.projects.filter(p=>p.id!==b.dataset.deleteProject);if(state.activeProject===b.dataset.deleteProject)state.activeProject=null;saveState();renderPage('projects')}});
- document.querySelectorAll('[data-rename-project]').forEach(b=>b.onclick=()=>{const p=state.projects.find(x=>x.id===b.dataset.renameProject);const n=prompt('New name?',p?.name||'');if(p&&n?.trim()){p.name=n.trim();saveState();renderPage('projects')}});
-}
-function openProject(id){const p=state.projects.find(x=>x.id===id);if(!p)return;syncActive();state.activeProject=id;state.code={html:'',css:'',js:'',...(p.code||{})};saveState();renderPage('code')}
-function copyText(text){if(!text)return toast('Nothing to copy yet.',true);if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(()=>toast('Copied.')).catch(()=>fallbackCopy(text));else fallbackCopy(text)}
-function fallbackCopy(text){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();toast('Copied.')}
-function downloadFile(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-try{if(config().url&&config().key)connectSupabase()}catch(e){console.warn('Supabase configuration needs attention:',e.message)}
-if(supabaseClient){
- supabaseClient.auth.onAuthStateChange((event,session)=>{if(session?.user){currentUser=session.user;showApp(session.user)}else if(event==='SIGNED_OUT'){currentUser=null;showAuth()}});
- refreshSession();
-}
-showAuth();
+/* ---- init ---- */
+document.querySelectorAll('.nb').forEach(b=>b.onclick=()=>{view=b.dataset.v;render();scrollTo(0,0)});
+$('#m1').onclick=()=>setMode('signup');$('#m2').onclick=()=>setMode('login');
+$('#sc').onclick=()=>sendCode(false);$('#rs').onclick=()=>sendCode(true);$('#vf').onclick=verify;$('#bk').onclick=()=>{step(1);am('')};
+$('#em').onkeydown=e=>{if(e.key==='Enter')sendCode(false)};$('#ot').onkeydown=e=>{if(e.key==='Enter')verify()};
+$('#cu').value=S.settings.supabaseUrl||'';$('#ck').value=S.settings.supabaseKey||'';
+$('#cs0').onclick=()=>{S.settings.supabaseUrl=$('#cu').value.trim();S.settings.supabaseKey=$('#ck').value.trim();save();try{am(connect()?'Connection saved. Now sign up or log in.':'Enter both the URL and key.',!sb)}catch(e){am(e.message,1)}};
+if(connect()){sb.auth.onAuthStateChange((ev)=>{if(ev==='SIGNED_OUT')showAuth()});sb.auth.getSession().then(({data})=>{if(data?.session?.user)enter(data.session.user)})}
+else $('#cfg').open=true;
 })();
-</script>
-</body>
-</html>
+</script></body></html>
